@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}
+    12345
+{% endblock %}
+
+
+
+{% block main %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+    <section class="content-header">
+         <h1>
+            2014——2018新旧动能饼图
+            <!-- <small>Preview sample</small> -->
+        </h1>
+{#        <ol class="breadcrumb">#}
+{#            <li><a href="#"><i class="fa fa-dashboard"></i>数据挖掘</a></li>#}
+{#            <!-- <li><a href="#">产品列表</a></li> -->#}
+{#            <li class="active">关联词探索</li>#}
+{#        </ol>#}
+    </section>
+    <section class="content">
+
+
+        {#        {% include "show/search.html" %}#}
+
+
+
+        <!--清除浮动-->
+        <div class="clear"></div>
+        <!--关键词-->
+        <div id="kw_href">
+        </div>
+
+
+
+        <!--Echarts-->
+        <div id="main" style="width: 230px;height:300px;background-color: darkseagreen"></div>
+
+    </section>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+    {#
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>#}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+
+    <script type="text/javascript">
+        var myCharts = echarts.init(document.getElementById("main"));
+
+        function foo() {
+
+
+            var option = {
+                title: {
+                    //text: '2014年',
+                    x: 'left',
+                    textStyle: {
+                        color: 'black',
+                        fontSize: 25
+                    }
+                },
+                //tooltip: {
+                //    trigger: 'item',
+                //    formatter: "{a} <br/>{b} : {c} "
+                //},
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    top: 10,
+                    itemWidth: 10,
+                    itemHeight: 10,
+                    formatter: '{name}',
+                    textStyle: {
+                        color: 'black',
+                        fontWeight: 300,
+                        fontSize: 12
+                    },
+                    data: [{name: '新行业', icon: 'rect', color: 'black'},
+                        {name: '旧行业', icon: 'rect', color: 'black'},
+                        {name: '其他行业', icon: 'rect', color: 'black'},
+                        //{name: '2016', icon: 'rect'},
+                        //{name: '2017', icon: 'rect'},
+                        //{name: '2018', icon: 'rect'}
+                    ]
+                }
+                ,
+                calculable: true,
+                series: [
+                    {
+                        name: '2014年****',
+                        type: 'pie',
+                        radius: '80%',//饼图的半径大小
+                        center: ['50%', '50%'],//饼图的位置
+                        label: {            //饼图图形上的文本标签
+                            normal: {
+                                show: true,
+                                position: 'inner', //标签的位置
+                                textStyle: {
+                                    fontWeight: 300,
+                                    fontSize: 16    //文字的字体大小
+                                },
+                                //formatter: '{d}%',
+                                //formatter: function (params) {
+                                //    console.log(params)
+                                //    return params.name +":"+`\n`+ params.value
+                                //
+                                //}
+                                formatter: function (p) {
+                                    console.log(p.value / 3.461149e+12 * 100 + ':' + p.value)
+                                    num = p.value / 3.461149e+12 * 100;
+                                    return Number(num.toString().match(/^\d+(?:\.\d{0,2})?/)) + "%"
+                                },
+
+
+                            }
+                        },
+                        data: [
+                            {value: 6.091870e+11, name: '新行业', itemStyle: {normal: {color: 'green'}}},
+                            {value: 1.570225e+12, name: '旧行业', itemStyle: {normal: {color: 'red'}}},
+                            {value: 1.281737e+12, name: '其他行业', itemStyle: {normal: {color: '#f6aa31'}}},
+                            //{value: 1.436602e+12, name: '2016', itemStyle: {normal: {color: 'black'}}},
+                            //{value: 1.509557e+12, name: '2017', itemStyle: {normal: {color: 'gray'}}},
+                            //{value: 1.608951e+12, name: '2018', itemStyle: {normal: {color: '#FFE200'}}},
+                        ]
+                    },
+
+                ]
+            };
+
+
+            myCharts.setOption(option)
+        }
+
+        $(function () {
+            foo()
+        })
+
+    </script>
+
+{% endblock %}
+{#
+
+{
+                        name: '公里总里程',
+                        type: 'pie',
+                        radius: '70%',//饼图的半径大小
+                        center: ['70%', '50%'],//饼图的位置
+                        label: {            //饼图图形上的文本标签
+                            normal: {
+                                show: true,
+                                position: 'inner', //标签的位置
+                                textStyle: {
+                                    fontWeight: 300,
+                                    fontSize: 28    //文字的字体大小
+                                },
+                                formatter: '{d}%',
+                                //formatter: function (params) {
+                                //    console.log(params)
+                                //    return params.name + params.value
+                                //
+                                //}
+
+
+                            }
+                        },
+                        data: [
+                            {value: 50, name: 'A', itemStyle: {normal: {color: 'red'}}},
+                            {value: 150, name: '一级', itemStyle: {normal: {color: '#F29700'}}},
+                            {value: 150, name: '二级', itemStyle: {normal: {color: 'black'}}},
+                            {value: 100, name: '三级', itemStyle: {normal: {color: 'gray'}}},
+                            {value: 50, name: '四级', itemStyle: {normal: {color: '#FFE200'}}},
+                        ]
+                    },
+
+
+#}

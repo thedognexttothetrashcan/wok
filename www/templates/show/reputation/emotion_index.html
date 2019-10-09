@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}
+情感分析
+{% endblock title %}
+
+{% block main  %}
+<link rel="stylesheet" href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+<section class="content-header">
+                <h1>
+                    情感分析
+                    <!-- <small>Preview sample</small> -->
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i>用户口碑</a></li>
+                    <!-- <li><a href="#">产品列表</a></li> -->
+                    <li class="active">情感分析</li>
+                </ol>
+            </section>
+            <section class="content">
+
+
+                {% include "food/search.html" %}
+
+                <div class="row mg_tp20">
+                    <div class="col-xs-12">
+                        <!-- interactive chart -->
+                        <div class="box box-primary">
+                            <h4>情感分析</h4>
+                            <div class="box-body">
+                                <div id="main" style="width: 100%;height:200px;"></div>
+                            </div>
+                           
+                        </div>
+                        <div class="box box-primary">
+                                
+
+                            <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs" id='tabs'>
+                                
+                                </ul>
+                                <div class="tab-content" id='tabcontents'>
+                                
+                                </div>
+
+                            </div>
+            
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+
+            </section>
+            <script type="text/javascript" src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+            <script>
+                    
+                function emotion_show(data) {
+                    console.log(data)
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                         tooltip : {
+                         trigger: 'axis',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        xAxis: {
+                            type: 'value',
+                        },
+                        yAxis: {
+                            type: 'category'  ,
+                            data: data[0],
+                        },
+                        series: [{
+                            name: '正面',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                    normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                            }
+                                    },
+                            data: data[1]
+                        },
+                            {
+                            name: '负面',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                    normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                            }
+                                    },
+                            data: data[2]
+                        }],
+                        legend: {
+                            data: ['正面', '负面']
+                        },
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    }
+
+                $('#btnSearch').click(function(){
+                    $.ajax({
+                            type: "POST",
+                            data:{
+                                brand_ids:$('#selBrand').val(),
+                                type_ids:$('#selProdType').val().join(','),
+                                date_range:$('#reservation').val()
+                            } ,
+                            url:'get_e_analysis/',
+                            success:function(data){
+                                if (data.msg == 700) {
+                                    alert(data.data)
+                                }
+                                emotion_show(data);
+                                
+                            }
+                        });
+                    $.ajax({
+                        type: "POST",
+                        url: 'get_WordCloud/',
+                        data:{
+                                brand_ids:$('#selBrand').val(),
+                                type_ids:$('#selProdType').val().join(','),
+                                date_range:$('#reservation').val()
+                            
+                            } ,
+                        success:function (data) {
+                            console.log(data)
+                            if (data.msg == 700) {
+                                alert(data.data)
+                            }
+                            $("#tabs").html('');
+                            $("#tabcontents").html('');
+                            var class_active = '';
+                            for(var i=0;i<data[0].length;i++){
+                         
+                                if(i==0){
+                                    class_active = 'active'
+                                }else{
+                                     class_active = '';
+                                }
+                              
+                                $("#tabs").append('<li  class="'+class_active+'"><a href="#tab_'+i+'" data-toggle="tab">'+data[0][i].label+'</a></li>');
+                                $("#tabcontents").append('  <div class="tab-pane '+class_active+'" id="tab_'+i+'"><div class="box-body" style="text-align: center">\
+                                <span style="display: inline-block;width: 500px;"><img id="imgWordCloud0'+i+'" style="width:450px;height:450px;padding-right:25px;"/><br><br><span><b>正面评论</b></span></span>\
+                                    <span style="display: inline-block;width: 500px;"><img id="imgWordCloud1'+i+'" style="width:450px;height:450px;padding-left:25px;"/><br><br><span><b>负面评论</b></span></span></div></div>');
+                                $("#imgWordCloud0"+i).attr('src',data[0][i].word_cloud); 
+                                $("#imgWordCloud1"+i).attr('src',data[1][i].word_cloud); 
+                           
+                            }
+                        }
+                    })
+                });
+            </script>
+
+{% endblock main  %}
+
+

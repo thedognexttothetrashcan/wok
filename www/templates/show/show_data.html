@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+
+{% block title %}
+    12345
+{% endblock %}
+
+
+
+{% block main %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+    {#        <section class="content">#}
+
+
+    {#        {% include "show/search.html" %}#}
+
+    {#        <div class="row mg_tp20">#}
+    {#            <div class="col-xs-12">#}
+    {#                <!-- interactive chart -->#}
+    {#                <div class="box box-primary">#}
+    {##}
+    {##}
+    {#                    <div class="nav-tabs-custom">#}
+    {#                        <ul class="nav nav-tabs" id='tabs'>#}
+    {##}
+    {#                        </ul>#}
+    {#                        <div class="tab-content" id='tabcontents'>#}
+    {##}
+    {#                        </div>#}
+    {##}
+    {#                    </div>#}
+    {#                    <!-- /.box -->#}
+    {##}
+    {#                </div>#}
+    {#                <!-- /.col -->#}
+    {#            </div>#}
+    {#        </div>#}
+    <!--Echarts-->
+    <div style="width: 100%;height: 5px;background-color: gray;position: relative;margin-right: 0"></div>
+
+    <!--上面4个DIV-->
+    <div id="new_old_power_show" style="width: 40%;height: 250px;border: 3px solid red">
+        <div style="position: relative;float: left;">
+            <div id="key_num_select" style="width: 120px;height: 30px">
+                <div class="nav-topSelect">
+                    <select class="form-control select2" tabindex="-1" aria-hidden="true" id="new" style="height:20px">
+                        <option selected="selected">2014</option>
+                        <option>2014</option>
+                        <option>2015</option>
+                        <option>2016</option>
+                        <option>2017</option>
+                        <option>2018</option>
+                    </select>
+                </div>
+            </div>
+            <div id="main_new_power" style="width: 200px;height:250px;"></div>
+
+        </div>
+
+        <div style="position: relative;float: left;">
+            <div id="key_num" style="width: 120px;height: 30px">
+                <div class="nav-topSelect1">
+                    <select class="form-control select" tabindex="-1" aria-hidden="true" id="old" style="height:20px">
+                        <option selected="selected">2014old</option>
+                        <option>2014</option>
+                        <option>2015</option>
+                        <option>2016</option>
+                        <option>2017</option>
+                        <option>2018</option>
+                    </select>
+                </div>
+            </div>
+            <div id="main_old_power" style="width: 200px;height:250px;"></div>
+        </div>
+    </div>
+
+{#    </div>#}
+    {#    </section>#}
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+    {#
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>#}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+
+    <script type="text/javascript">
+        var myCharts_new_pow = echarts.init(document.getElementById("main_new_power"));
+        var myCharts_old_pow = echarts.init(document.getElementById("main_old_power"));
+
+        function foo() {
+
+
+            var option = {
+                title: {
+                    text: '2018新动能行业耗电量Top10',
+                    //text: '2018旧动能行业耗电量Top10',
+                    left: 'center',
+                    itemGap: 2,
+                    textStyle: {
+                        color: 'black',
+                        fontSize: 15
+                    }
+                },
+
+                //tooltip: {
+                //  trigger: 'axis',
+                //axisPointer: {
+                //  type: 'shadow'
+                //}
+                //},
+                //legend: {
+                //    data: ['2018年']
+                //},
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true,
+
+
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01],
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: '#c3dbff',  //更改坐标轴文字颜色
+                            fontSize: 14      //更改坐标轴文字大小
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#315070' //更改坐标轴颜色
+                        }
+                    }
+
+                },
+                yAxis: {
+
+                    type: 'category',
+
+                    // New data
+                    data: [' 计算机服务和软件业',
+                        ' 医药制造业（轻）',
+                        ' 卫生、社会保障和社会福利业',
+                        ' 水利、环境和公共设施管理业',
+                        ' 公共管理和社会组织、国际组织',
+                        ' 住宿和餐饮业',
+                        ' 教育、文化、体育和娱乐业',
+                        ' 房地产业',
+                        ' 批发和零售业',
+                        ' 有色金属冶炼及压延加工业'],
+
+                    // Old data
+                    //data: [' 水的生产和供应业',
+                    //    '农、林、牧、渔服务业',
+                    //    ' 煤炭开采和洗选业',
+                    //    ' 石油加工、炼焦及核燃料加工业',
+                    //    ' 橡胶和塑料制品业',
+                    //    ' 电力、热力的生产和供应业',
+                    //    ' 纺织业（轻）',
+                    //    ' 非金属矿物制品业',
+                    //    ' 化学原料及化学制品制造业',
+                    //    ' 黑色金属冶炼及压延加工业'],
+
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: "black",
+                            fontSize: 10,
+                            fontWeight: 900,
+                        }
+                    },
+
+                },
+                series: [
+                    {
+                        inverse: false,
+                        name: '2018年',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    // 给出颜色组
+                                    var colorList = ['#4c8c41'];
+                                    //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
+                                    return colorList[params.dataIndex]
+                                },
+                            },
+
+                        },
+                        label: {
+                            normal: {
+                                //show: true,// 显示百分比
+                                show: false,// 不显示百分比
+                                formatter: function (p) {
+                                    // Number(15.7784514000.toString().match(/^\d+(?:\.\d{0,2})?/))
+                                    console.log(p.value)
+                                    num = p.value / 3.461149e+12 * 100;
+                                    return Number(num.toString().match(/^\d+(?:\.\d{0,2})?/)) + "%"
+                                    //return Math.floor(p.value / 1398193377473.0 * 100) +'%'
+                                },
+                                position: "right",
+                                textStyle: {
+                                    //'rgba(247,187,65,1)'
+                                    color: "rgba(247,187,65,1)",
+                                    fontSize: 20
+                                }
+                            }
+                        },
+
+                        // New data
+                        data: [29899763138.0,
+                            30070895226.0,
+                            37021757080.0,
+                            43169472616.0,
+                            47359242969.0,
+                            54570322064.0,
+                            68584704533.0,
+                            102726864422.0,
+                            171192414245.0,
+                            181922935610.0]
+
+                        //---------------------
+                        // Old data
+                        //data: [40546651492.0,
+                        //    42300502194.0,
+                        //    54061981687.0,
+                        //    67389115721.0,
+                        //    98854420125.0,
+                        //    140704661989.0,
+                        //    145089595276.0,
+                        //    231501549812.0,
+                        //    260808777640.0,
+                        //    316936121537.0]
+                    },
+
+                ]
+            };
+            var option1 = {
+                title: {
+                    //text: '2018新动能行业耗电量Top10',
+                    text: '2018旧动能行业耗电量Top10',
+                    left: 'center',
+                    itemGap: 2,
+                    textStyle: {
+                        color: 'black',
+                        fontSize: 15
+                    }
+                },
+
+                //tooltip: {
+                //  trigger: 'axis',
+                //axisPointer: {
+                //  type: 'shadow'
+                //}
+                //},
+                //legend: {
+                //    data: ['2018年']
+                //},
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true,
+
+
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01],
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: '#c3dbff',  //更改坐标轴文字颜色
+                            fontSize: 14      //更改坐标轴文字大小
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#315070' //更改坐标轴颜色
+                        }
+                    }
+
+                },
+                yAxis: {
+
+                    type: 'category',
+
+                    // New data
+                    //data: [' 计算机服务和软件业',
+                    //    ' 医药制造业（轻）',
+                    //    ' 卫生、社会保障和社会福利业',
+                    //    ' 水利、环境和公共设施管理业',
+                    //    ' 公共管理和社会组织、国际组织',
+                    //    ' 住宿和餐饮业',
+                    //    ' 教育、文化、体育和娱乐业',
+                    //    ' 房地产业',
+                    //    ' 批发和零售业',
+                    //    ' 有色金属冶炼及压延加工业'],
+
+                    // Old data
+                    data: [' 水的生产和供应业',
+                        '农、林、牧、渔服务业',
+                        ' 煤炭开采和洗选业',
+                        ' 石油加工、炼焦及核燃料加工业',
+                        ' 橡胶和塑料制品业',
+                        ' 电力、热力的生产和供应业',
+                        ' 纺织业（轻）',
+                        ' 非金属矿物制品业',
+                        ' 化学原料及化学制品制造业',
+                        ' 黑色金属冶炼及压延加工业'],
+
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: "black",
+                            fontSize: 10,
+                            fontWeight: 900,
+                        }
+                    },
+
+                },
+                series: [
+                    {
+                        inverse: false,
+                        name: '2018年',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    // 给出颜色组
+                                    var colorList = ['#4c8c41'];
+                                    //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
+                                    return colorList[params.dataIndex]
+                                },
+                            },
+
+                        },
+                        label: {
+                            normal: {
+                                //show: true,// 显示百分比
+                                show: false,// 不显示百分比
+                                formatter: function (p) {
+                                    // Number(15.7784514000.toString().match(/^\d+(?:\.\d{0,2})?/))
+                                    console.log(p.value)
+                                    num = p.value / 3.461149e+12 * 100;
+                                    return Number(num.toString().match(/^\d+(?:\.\d{0,2})?/)) + "%"
+                                    //return Math.floor(p.value / 1398193377473.0 * 100) +'%'
+                                },
+                                position: "right",
+                                textStyle: {
+                                    //'rgba(247,187,65,1)'
+                                    color: "rgba(247,187,65,1)",
+                                    fontSize: 20
+                                }
+                            }
+                        },
+
+                        // New data
+                        //data: [29899763138.0,
+                        //    30070895226.0,
+                        //    37021757080.0,
+                        //    43169472616.0,
+                        //    47359242969.0,
+                        //    54570322064.0,
+                        //    68584704533.0,
+                        //    102726864422.0,
+                        //    171192414245.0,
+                        //    181922935610.0]
+
+                        //---------------------
+                        // Old data
+                        data: [40546651492.0,
+                            42300502194.0,
+                            54061981687.0,
+                            67389115721.0,
+                            98854420125.0,
+                            140704661989.0,
+                            145089595276.0,
+                            231501549812.0,
+                            260808777640.0,
+                            316936121537.0]
+                    },
+
+                ]
+            };
+
+
+            myCharts_new_pow.setOption(option);
+            myCharts_old_pow.setOption(option1)
+        }
+
+        $(function () {
+            foo()
+        })
+
+    </script>
+
+{% endblock %}

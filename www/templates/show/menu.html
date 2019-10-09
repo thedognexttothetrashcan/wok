@@ -1,0 +1,178 @@
+<style>
+    .treeview-menu > li > a{
+        left: 20px;
+    }
+</style>
+<!--左侧侧边菜单-->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ url_for('static', filename='img/icon1.jpeg') }}" class="img-circle"
+                     alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <a href="#"><span style="color: #00acd6;font-size: 18px">功 能 区</span></a>
+            </div>
+        </div>
+        <!-- search form -->
+        <!--<div class="nav-topSelect">-->
+            <!--<select class="form-control select2" tabindex="-1" aria-hidden="true" onchange='change_industry()' id='selChangeIndustry'>-->
+                <!--<option selected="selected">选择行业</option>-->
+
+                <!--<option value="">1</option>-->
+                <!--<option value="">2</option>-->
+                <!--<option value="">3</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header" style="color: whitesmoke;">MAIN NAVIGATION</li>
+{#        text-shadow: .2rem 0rem .5rem red,-.2rem 0rem .5rem red,0rem .2rem .5rem red,0rem -.2rem .5rem red;#}
+
+            {% if menu_status['p_menu']=='summary' %}
+                <li class="active treeview">
+                    {% else %}
+                <li class="treeview">
+            {% endif %}
+            <a href="#" style="display: none">
+                <i class="fa fa-dashboard"></i> <span>数据统计</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                {% if menu_status['c_menu']=='dash_b' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+
+                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>Dashboard</a></li>
+                {% if menu_status['c_menu']=='p_list' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}"><i class="fa fa-circle-o"></i>产品列表</a></li>
+
+
+                {% if menu_status['c_menu']=='c_list' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}"><i class="fa fa-circle-o"></i>评论数据</a></li>
+                {% if menu_status['c_menu']=='p_stat' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}"><i class="fa fa-circle-o"></i>产品统计</a></li>
+
+                {% if menu_status['c_menu']=='c_stat' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+
+                <a href="{{ url_for('t.index') }}"><i class="fa fa-circle-o"></i>评论分析</a></li>
+
+            </ul>
+            </li>
+
+            {% if menu_status['p_menu']=='reputation' %}
+                <li class="active treeview">
+                    {% else %}
+                <li class="treeview">
+            {% endif %}
+            <a href="#">
+                <i class="fa fa-pie-chart"></i>
+                <span>Demo1</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                {% if menu_status['c_menu']=='all_impress' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>整体印象</a></li>
+
+                {% if menu_status['c_menu']=='e_analysis' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>情感分析</a></li>
+
+                {% if menu_status['c_menu']=='demo_show' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}"><i class="fa fa-circle-o"></i>show</a></li>
+
+
+
+                {% if menu_status['c_menu']=='p_pecognition' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>产品认知</a></li>
+
+                {% if menu_status['c_menu']=='b_perception' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>品牌感知</a>
+            </ul>
+            </li>
+
+            {% if menu_status['p_menu']=='dataDig' %}
+                <li class="active treeview">
+                    {% else %}
+                <li class="treeview">
+            {% endif %}
+            <a href="#">
+                <i class="fa fa-laptop"></i>
+                <span>Demo2</span>
+{#                <span>数据挖掘</span>#}
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+
+                {% if menu_status['c_menu']=='kw_discovery' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('t1.t1_index') }}"><i class="fa fa-circle-o"></i>demo1</a></li>
+                <li style="display: none"><a href="#"><i class="fa fa-circle-o"></i>观点聚类</a></li>
+
+            {% if menu_status['c_menu']=='14-18' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>14-18</a></li>
+
+
+            </ul>
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<!--左侧侧边菜单End-->
+<script>
+</script>

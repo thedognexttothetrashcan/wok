@@ -1,0 +1,86 @@
+        .panel {
+            margin: 0;
+        }
+
+        html, body {
+            margin: auto;
+        }
+
+        .new_old_top2 {
+            width: 30%;
+            height: 300px;
+            background-color: #f3f3f3;
+            float: left;
+
+        }
+
+        .new_old_top1 {
+            width: 20%;
+            height: 300px;
+            background-color: #f3f3f3;
+            float: left;
+
+        }
+
+        .china_and_child_map {
+            width: 483px;
+            height: 500px;
+            /*background-color: red;*/
+            float: left;
+        }
+
+        #power_index {
+            width: 100%;
+            float: right;
+        }
+
+        .power_num {
+            position: relative;
+            width: 15%;
+            height: 250px;
+            /*background-color: yellow;*/
+            float: left;
+        }
+
+        .GDP_num {
+            position: relative;
+            width: 15%;
+            height: 250px;
+            background-color: gold;
+            float: left;
+        }
+        #growth_rate{
+            /*background-color: red;*/
+            width: 60%;
+            height: 250px;
+            float: left;
+        }
+        .time_search {
+            position: relative;
+            margin-left: 25%;
+        }
+
+        #time_search1 {
+            position: absolute;
+            /*float: left;*/
+            left: 350px;
+
+        }
+
+        #time_search2 {
+            position: absolute;
+            /*float: left;*/
+            left: 590px;
+        }
+
+        #time_search3 {
+            position: absolute;
+            /*float: left;*/
+            left: 950px;
+        }
+
+        #time_search4 {
+            position: absolute;
+            /*float: left;*/
+            left: 1310px;
+        }

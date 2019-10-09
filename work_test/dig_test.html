@@ -1,0 +1,724 @@
+{% extends "base.html" %}
+{% block title %}
+    Data Show
+{% endblock title %}
+
+{% block CSS %}
+    <style>
+        #box {
+            display: none;
+            background-color: goldenrod;
+            width: 500px;
+            height: 300px;
+            position: absolute;
+            top: 15rem;
+
+        }
+
+        #box-title {
+            display: block;
+        }
+
+        {# ;">#}
+        #show_data {
+            border: 5px solid red;
+            color: #00a157;
+            float: right;
+            position: relative;
+            margin-right: 40px;
+            width: 200px;
+            height: 400px;
+            display: none;
+
+        }
+
+        #main {
+        {#backgroundImage:url("{{ url_for('static',filename='img/icon1.jpeg') }}"),#}{#background-image: url("{{ url_for('static',filename='img/icon1.jpeg') }}");#}
+        }
+    </style>
+
+
+{% endblock CSS %}
+
+
+{% block main %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='china.js') }}"></script>
+    <section class="content-header">
+        <h1>
+            Data Show
+            <!-- <small>Preview sample</small> -->
+        </h1>
+        <ol class="breadcrumb" style="display: none">
+            <li><a href="#"><i class="fa fa-dashboard"></i>show</a></li>
+            <li class="active">show</li>
+        </ol>
+    </section>
+    <section class="content">
+
+
+        {% include "show/search.html" %}
+
+
+        <div class="row mg_tp20">
+            <div class="col-xs-12">
+                <!-- interactive chart -->
+                <div class="box box-primary">
+
+
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs" id='tabs'>
+
+                        </ul>
+                        {#                        <div class="tab-content" id='tabcontents'>#}
+                        {##}
+                        {#                        </div>#}
+
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+        <!--Echarts-->
+        <div>
+            <div id="main" style="width: 70%;height:400px;float: left;"></div>
+            <div id="show_data">
+
+            </div>
+        </div>
+
+
+        <div id="container" style="height: 700px;padding:0;width:100%"></div> <!--地图-->
+        <!--弹出框-->
+        <div id="box">
+            <p id="box-title" style="padding: 1rem;"></p>
+        </div>
+
+
+    </section>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+
+
+    {#  以下必须导入  #}
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=2.0&ak=HIYpc7I1PEfjryFvHVj7vUCYZEDGpvfB"></script>
+    {#  以上必须导入  #}
+
+
+    <script type="text/javascript">
+        function foo() {
+            var myChart = echarts.init(document.getElementById('main'));
+
+            //echarts.registerMap('china', chinaJson);
+
+            function randomData() {
+                return Math.round(Math.random() * 500);
+            }
+
+            var mydata = [
+                {id: 111, name: '北京', value: randomData()}, {id: 222, name: '天津', value: randomData()},
+                {id: 111, name: '上海', value: randomData()}, {id: 222, name: '重庆', value: randomData()},
+                {id: 111, name: '河北', value: randomData()}, {id: 222, name: '河南', value: randomData()},
+                {id: 111, name: '云南', value: randomData()}, {id: 222, name: '辽宁', value: randomData()},
+                {id: 111, name: '黑龙江', value: randomData()}, {id: 222, name: '湖南', value: randomData()},
+                {id: 111, name: '安徽', value: randomData()}, {id: 222, name: '山东', value: randomData()},
+                {id: 111, name: '新疆', value: randomData()}, {id: 222, name: '江苏', value: randomData()},
+                {id: 111, name: '浙江', value: randomData()}, {id: 222, name: '江西', value: randomData()},
+                {id: 111, name: '湖北', value: randomData()}, {id: 222, name: '广西', value: randomData()},
+                {id: 111, name: '甘肃', value: randomData()}, {id: 222, name: '山西', value: randomData()},
+                {id: 111, name: '内蒙古', value: randomData()}, {id: 222, name: '陕西', value: randomData()},
+                {id: 111, name: '吉林', value: randomData()}, {id: 222, name: '福建', value: randomData()},
+                {id: 111, name: '贵州', value: randomData()}, {id: 222, name: '广东', value: randomData()},
+                {id: 111, name: '青海', value: randomData()}, {id: 222, name: '西藏', value: randomData()},
+                {id: 111, name: '四川', value: randomData()}, {id: 222, name: '宁夏', value: randomData()},
+                {id: 111, name: '海南', value: randomData()}, {id: 222, name: '台湾', value: randomData()},
+                {id: 111, name: '香港', value: randomData()}, {id: 222, name: '澳门', value: randomData()}
+            ];
+            var mapList = [
+                {
+                    id: "11",
+                    name: "北京市",
+                    value: randomData()
+                },
+                {
+                    id: "12",
+                    name: "天津市",
+                    value: randomData()
+                },
+                {
+                    id: "13",
+                    name: "河北省",
+                    value: randomData()
+                },
+                {
+                    id: "14",
+                    name: "山西省",
+                    value: randomData()
+                },
+                {
+                    id: "15",
+                    name: "内蒙古自治区",
+                    value: randomData()
+                },
+                {
+                    id: "21",
+                    name: "辽宁省",
+                    value: randomData()
+                },
+                {
+                    id: "22",
+                    name: "吉林省",
+                    value: randomData()
+                },
+                {
+                    id: "23",
+                    name: "黑龙江省",
+                    value: randomData()
+                },
+                {
+                    id: "31",
+                    name: "上海市",
+                    value: randomData()
+                },
+                {
+                    id: "32",
+                    name: "江苏省",
+                    value: randomData()
+                },
+                {
+                    id: "33",
+                    name: "浙江省",
+                    value: randomData()
+
+                },
+                {
+                    id: "34",
+                    name: "安徽省",
+                    value: randomData()
+                },
+                {
+                    id: "35",
+                    name: "福建省",
+                    value: randomData()
+                },
+                {
+                    id: "36",
+                    name: "江西省",
+                    value: randomData()
+                },
+                {
+                    id: "37",
+                    name: "山东省",
+                    value: randomData()
+                },
+                {
+                    id: "41",
+                    name: "河南省",
+                    value: randomData()
+                },
+                {
+                    id: "42",
+                    name: "湖北省",
+                    value: randomData()
+                },
+                {
+                    id: "43",
+                    name: "湖南省",
+                    value: randomData()
+                },
+                {
+                    id: "44",
+                    name: "广东省",
+                    value: randomData()
+                },
+                {
+                    id: "45",
+                    name: "广西壮族自治区",
+                    value: randomData()
+                },
+                {
+                    id: "46",
+                    name: "海南省",
+                    value: randomData()
+                },
+                {
+                    id: "50",
+                    name: "重庆市",
+                    value: randomData()
+                },
+                {
+                    id: "51",
+                    name: "四川省",
+                    value: randomData()
+                },
+                {
+                    id: "52",
+                    name: "贵州省",
+                    value: randomData()
+                },
+                {
+                    id: "53",
+                    name: "云南省",
+                    value: randomData()
+                },
+                {
+                    id: "54",
+                    name: "西藏自治区",
+                    value: randomData()
+                },
+                {
+                    id: "61",
+                    name: "陕西省",
+                    value: randomData()
+                },
+                {
+                    id: "62",
+                    name: "甘肃省",
+                    value: randomData()
+                },
+                {
+                    id: "63",
+                    name: "青海省",
+                    value: randomData()
+                },
+                {
+                    id: "64",
+                    name: "宁夏回族自治区",
+                    value: randomData()
+                },
+                {
+                    id: "65",
+                    name: "新疆维吾尔自治区",
+                    value: randomData()
+                },
+                {
+                    id: "71",
+                    name: "台湾省",
+                    value: randomData()
+                },
+                {
+                    id: "81",
+                    name: "香港特别行政区",
+                    value: randomData()
+                },
+                {
+                    id: "82",
+                    name: "澳门特别行政区",
+                    value: randomData()
+                }
+            ];
+            var m = [{id: '11', name: '北京', value: randomData()},
+                {id: '12', name: '天津', value: randomData()},
+                {id: '13', name: '上海', value: randomData()},
+                {id: '14', name: '重庆', value: 222},
+                {id: '15', name: '河北', value: randomData()},
+                {id: '21', name: '河南', value: randomData()},
+                {id: '22', name: '云南', value: randomData()},
+                {id: '23', name: '辽宁', value: 111},
+                {id: '31', name: '黑龙江', value: randomData()},
+                {id: '32', name: '湖南', value: 444},
+                {id: '33', name: '安徽', value: randomData()},
+                {id: '34', name: '山东', value: randomData()},
+                {id: '35', name: '新疆', value: randomData()},
+                {id: '36', name: '江苏', value: randomData()},
+                {id: '37', name: '浙江', value: randomData()},
+                {id: '41', name: '江西', value: randomData()},
+                {id: '42', name: '湖北', value: randomData()},
+                {id: '43', name: '广西', value: randomData()},
+                {id: '44', name: '甘肃', value: randomData()},
+                {id: '45', name: '山西', value: randomData()},
+                {id: '46', name: '内蒙古', value: randomData()},
+                {id: '50', name: '陕西', value: randomData()},
+                {id: '51', name: '吉林', value: randomData()},
+                {id: '52', name: '福建', value: randomData()},
+                {id: '53', name: '贵州', value: randomData()},
+                {id: '54', name: '广东', value: randomData()},
+                {id: '61', name: '青海', value: randomData()},
+                {id: '62', name: '西藏', value: randomData()},
+                {id: '63', name: '四川', value: randomData()},
+                {id: '64', name: '宁夏', value: randomData()},
+                {id: '65', name: '海南', value: randomData()},
+                {id: '71', name: '台湾', value: randomData()},
+                {id: '81', name: '香港', value: randomData()},
+                {id: '82', name: '澳门', value: randomData()}];
+
+
+            function getProId(name) {
+                for (let i in m) {
+                    if (m[i].name == name) {
+                        //console.log(m[i])
+                        return m[i].id;
+                    }
+                }
+            }
+
+            function getCityId(geoJson, name) {
+                for (let i in geoJson.features) {
+                    if (geoJson.features[i].properties.name == name) {
+                        return geoJson.features[i].properties.id + "00";
+                    }
+                }
+            }
+
+            var optionMap = {
+                backgroundColor: 'gray',
+                //image:img,
+
+                title: {
+                    text: '全国地图大数据',
+                    subtext: '',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+
+                //左侧小导航图标
+                visualMap: {
+                    show: true,
+                    x: 'left',
+                    y: 'center',
+                    splitList: [
+                        {start: 500, end: 600}, {start: 400, end: 500},
+                        {start: 300, end: 400}, {start: 200, end: 300},
+                        {start: 100, end: 200}, {start: 0, end: 100},
+                    ],
+                    color: ['#5475f5', '#9feaa5', '#85daef', '#74e2ca', '#e6ac53', '#9fb5ea']
+                },
+
+                //配置属性
+                series: [{
+                    name: '数据',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true  //省份名称
+                        },
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    //data: mapList  //数据
+                    data: m,  //数据
+                    //data: mapList  //数据
+                    //clickable:false
+
+
+                }]
+            };
+            //初始化echarts实例
+            myChart.on('click', function (params) {
+                // console.log(params)
+
+                myChart.showLoading();
+                $.getJSON("{{ url_for('static', filename='json/geometryProvince/') }}" + getProId(params.name) + '.js', function (geoJson) {
+                    myChart.hideLoading();
+                    echarts.registerMap(getProId(params.name), geoJson);
+                    myChart.setOption(option = {
+                        backgroundColor: "#7adddd",
+                        tooltip: {
+                            formatter: function (params, ticket, callback) {
+                                return params.seriesName + '<br />' + params.name + '：' + params.value
+                            }
+                        },
+                        title: {
+                            text: params.name,
+                            subtext: '',
+                            x: 'center'
+                        },
+                        visualMap: {
+                            min: 0,
+                            max: 10,
+                            text: ['High', 'Low'],
+                            seriesIndex: [1],                   //必须设置此项,否则会覆盖标注点颜色
+                            realtime: true,
+                            calculable: true,
+                            inRange: {
+                                color: ['lightskyblue', 'yellow', 'orangered']
+                            },
+                            textStyle: {
+                                color: 'lime'
+                            }
+                        },
+                        geo: {
+                            map: getProId(params.name),
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: '#3ebee6'                        //省份字体颜色
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderColor: 'red'
+                                    //borderColor: 'rgba(0, 0, 0, 0.2)'
+                                },
+                                emphasis: {
+                                    areaColor: null,
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'blue'
+                                    //shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        clickable: false,
+                        series: [
+                            {
+                                roam: true,
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                //clickable:false // 取消点击事件
+
+                            }
+                        ]
+                    });
+                    //myChart.on('click',eConsole);
+                    try {
+                        myChart.on('click', function (params) {
+                            //console.log(params)
+                            //alert('asdasds')
+                            //myChart.reset()
+                            //myChart.refresh()
+                            //myChart.clean()
+                            //myChart.clear()
+                            $.ajax({
+                                url: "{{ url_for('t.data_show') }}",
+
+                                success: function (data) {
+                                    //alert(data)
+                                    console.log(params);
+                                    $("#show_data").show()
+                                    $("#show_data").html('<h3>' + params.name + '</h3>' + '</br>')
+
+                                }
+                            });
+                        });
+                    } catch (e) {
+                        alert('asdasd')
+                    }
+
+
+                });
+
+            });
+            //myChart.on('click', function (params) {
+            //    //var city = params.name;
+            //    //loadChart(city);
+            //    console.log(params)
+            //    //alert(params.name)
+            //    $.ajax({
+            //        url: "{{ url_for('t.data_show') }}",
+            //
+            //        success: function (data) {
+            //            //alert(data)
+            //            console.log(params);
+            //            $("#show_data").show()
+            //            $("#show_data").html('<h3>' + params.name + '</h3>' + '</br>')
+            //
+            //        }
+            //    });
+            //});
+            //myChart.on('click', function (params) {
+            //        alert('your code');
+            //    });
+            //使用制定的配置项和数据显示图表
+            myChart.setOption(optionMap);
+
+        }
+
+        $(function () {
+            foo();
+        });
+        //$.ajax({
+        //  url: "{{ url_for('t.data_show') }}",
+
+        //success: function (data) {
+        //foo();
+        //}
+        //});
+    </script>
+
+
+{% endblock main %}
+{#
+
+
+
+option = {
+
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    tooltip: {
+
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    },
+
+                },
+    series: [{
+        data: [300, 200, 150, 140, 120, 110, 10],
+        type: 'bar',
+        itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // 给出颜色组
+                        var colorList = ['#cca272','#cda266','#d7a02b','#c8ba23',];
+                        return colorList[params.dataIndex]
+                    },
+                },
+
+            },
+        label: {
+        normal: {
+            show: true,
+            //formatter: '{c}%',
+            formatter:function(p){
+                return p.data
+            },
+            position: "top",
+            textStyle: {
+                color: "black",
+                fontSize: 14
+            }
+        }
+    }
+
+    },]
+};
+
+
+
+
+
+#}
+
+{# _---------------饼图-------------------------------#}
+var option = {
+                title: {
+                    text: '公里总里程',
+                    x: 'left',
+                    textStyle: {
+                        color: '#FFFFFF',
+                        fontSize: 25
+                    }
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} KM"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    top: 40,
+                    itemWidth: 70,
+                    itemHeight: 30,
+                    formatter: '{name}',
+                    textStyle: {
+                        color: '#FFFFFF'
+                    },
+                    data: [{name: 'A', icon: 'rect'}, {name: '一级', icon: 'rect'}, {
+                        name: '二级',
+                        icon: 'rect'
+                    }, {name: '三级', icon: 'rect'}, {name: '四级', icon: 'rect'}]
+                }
+                ,
+                calculable: true,
+                series: [
+                    {
+                        name: '公里总里程',
+                        type: 'pie',
+                        radius: '70%',//饼图的半径大小
+                        center: ['30%', '50%'],//饼图的位置
+                        label: {            //饼图图形上的文本标签
+                            normal: {
+                                show: true,
+                                position: 'inner', //标签的位置
+                                textStyle: {
+                                    fontWeight: 300,
+                                    fontSize: 16    //文字的字体大小
+                                },
+                                //formatter: '{d}%',
+                                formatter: function (params) {
+                                    console.log(params)
+                                    return params.name +":"+`\n`+ params.value+"KM"
+
+                                }
+
+
+                            }
+                        },
+                        data: [
+                            {value: 50, name: 'A', itemStyle: {normal: {color: 'red'}}},
+                            {value: 150, name: '一级', itemStyle: {normal: {color: '#F29700'}}},
+                            {value: 150, name: '二级', itemStyle: {normal: {color: 'black'}}},
+                            {value: 100, name: '三级', itemStyle: {normal: {color: 'gray'}}},
+                            {value: 50, name: '四级', itemStyle: {normal: {color: '#FFE200'}}},
+                        ]
+                    },
+                    {
+                        name: '公里总里程',
+                        type: 'pie',
+                        radius: '70%',//饼图的半径大小
+                        center: ['70%', '50%'],//饼图的位置
+                        label: {            //饼图图形上的文本标签
+                            normal: {
+                                show: true,
+                                position: 'inner', //标签的位置
+                                textStyle: {
+                                    fontWeight: 300,
+                                    fontSize: 28    //文字的字体大小
+                                },
+                                formatter: '{d}%',
+                                //formatter: function (params) {
+                                //    console.log(params)
+                                //    return params.name + params.value
+                                //
+                                //}
+
+
+                            }
+                        },
+                        data: [
+                            {value: 50, name: 'A', itemStyle: {normal: {color: 'red'}}},
+                            {value: 150, name: '一级', itemStyle: {normal: {color: '#F29700'}}},
+                            {value: 150, name: '二级', itemStyle: {normal: {color: 'black'}}},
+                            {value: 100, name: '三级', itemStyle: {normal: {color: 'gray'}}},
+                            {value: 50, name: '四级', itemStyle: {normal: {color: '#FFE200'}}},
+                        ]
+                    },
+                ]
+            };

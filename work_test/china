@@ -1,0 +1,199 @@
+河北省,山西省,辽宁省,吉林省,黑龙江省,江苏省,浙江省,安徽省,福建省,江西省,山东省,河南省,湖北省,湖南省,广东省,海南省,四川省,贵州省,云南省,陕西省,甘肃省,青海省,台湾省,内蒙古,广西,西藏,宁夏,新疆,北京市,天津市,上海市,重庆市,香港,澳门
+
+
+mydata = ['北京', '天津','上海', '重庆','河北', '河南','云南', '辽宁','黑龙江','湖南','安徽', '山东','新疆', '江苏','浙江', '江西','湖北', '广西','甘肃', '山西','内蒙古','陕西','吉林', '福建','贵州', '广东','青海', '西藏','四川', '宁夏','海南', '台湾','香港', '澳门',]
+
+mydata = [
+                {'id':111,'name': '北京', 'value': '100'}, {'id':222,'name': '天津', 'value': '100'},
+                {'id':111,'name': '上海', 'value': '100'}, {'id':222,'name': '重庆', 'value': '100'},
+                {'id':111,'name': '河北', 'value': '100'}, {'id':222,'name': '河南', 'value': '100'},
+                {'id':111,'name': '云南', 'value': '100'}, {'id':222,'name': '辽宁', 'value': '100'},
+                {'id':111,'name': '黑龙江','value': '100'}, {'id':222,'name': '湖南', 'value': '100'},
+                {'id':111,'name': '安徽', 'value': '100'}, {'id':222,'name': '山东', 'value': '100'},
+                {'id':111,'name': '新疆', 'value': '100'}, {'id':222,'name': '江苏', 'value': '100'},
+                {'id':111,'name': '浙江', 'value': '100'}, {'id':222,'name': '江西', 'value': '100'},
+                {'id':111,'name': '湖北', 'value': '100'}, {'id':222,'name': '广西', 'value': '100'},
+                {'id':111,'name': '甘肃', 'value': '100'}, {'id':222,'name': '山西', 'value': '100'},
+                {'id':111,'name': '内蒙古','value': '100'}, {'id':222,'name': '陕西', 'value': '100'},
+                {'id':111,'name': '吉林', 'value': '100'}, {'id':222,'name': '福建', 'value': '100'},
+                {'id':111,'name': '贵州', 'value': '100'}, {'id':222,'name': '广东', 'value': '100'},
+                {'id':111,'name': '青海', 'value': '100'}, {'id':222,'name': '西藏', 'value': '100'},
+                {'id':111,'name': '四川', 'value': '100'}, {'id':222,'name': '宁夏', 'value': '100'},
+                {'id':111,'name': '海南', 'value': '100'}, {'id':222,'name': '台湾', 'value': '100'},
+                {'id':111,'name': '香港', 'value': '100'}, {'id':222,'name': '澳门', 'value': '100'}
+            ]
+
+
+var mapList = [
+                {
+                    id: "11",
+                    name: "北京市",
+                    value: randomData()
+                },
+                {
+                    id: "12",
+                    name: "天津市",
+                    value: randomData()
+                },
+                {
+                    id: "13",
+                    name: "河北省",
+                    value: randomData()
+                },
+                {
+                    id: "14",
+                    name: "山西省",
+                    value: randomData()
+                },
+                {
+                    id: "15",
+                    name: "内蒙古自治区",
+                    value: randomData()
+                },
+                {
+                    id: "21",
+                    name: "辽宁省",
+                    value: randomData()
+                },
+                {
+                    id: "22",
+                    name: "吉林省",
+                    value: randomData()
+                },
+                {
+                    id: "23",
+                    name: "黑龙江省",
+                    value: randomData()
+                },
+                {
+                    id: "31",
+                    name: "上海市",
+                    value: randomData()
+                },
+                {
+                    id: "32",
+                    name: "江苏省",
+                    value: randomData()
+                },
+                {
+                    id: "33",
+                    name: "浙江省",
+                    value: randomData()
+
+                },
+                {
+                    id: "34",
+                    name: "安徽省",
+                    value: randomData()
+                },
+                {
+                    id: "35",
+                    name: "福建省",
+                    value: randomData()
+                },
+                {
+                    id: "36",
+                    name: "江西省",
+                    value: randomData()
+                },
+                {
+                    id: "37",
+                    name: "山东省",
+                    value: randomData()
+                },
+                {
+                    id: "41",
+                    name: "河南省",
+                    value: randomData()
+                },
+                {
+                    id: "42",
+                    name: "湖北省",
+                    value: randomData()
+                },
+                {
+                    id: "43",
+                    name: "湖南省",
+                    value: randomData()
+                },
+                {
+                    id: "44",
+                    name: "广东省",
+                    value: randomData()
+                },
+                {
+                    id: "45",
+                    name: "广西壮族自治区",
+                    value: randomData()
+                },
+                {
+                    id: "46",
+                    name: "海南省",
+                    value: randomData()
+                },
+                {
+                    id: "50",
+                    name: "重庆市",
+                    value: randomData()
+                },
+                {
+                    id: "51",
+                    name: "四川省",
+                    value: randomData()
+                },
+                {
+                    id: "52",
+                    name: "贵州省",
+                    value: randomData()
+                },
+                {
+                    id: "53",
+                    name: "云南省",
+                    value: randomData()
+                },
+                {
+                    id: "54",
+                    name: "西藏自治区",
+                    value: randomData()
+                },
+                {
+                    id: "61",
+                    name: "陕西省",
+                    value: randomData()
+                },
+                {
+                    id: "62",
+                    name: "甘肃省",
+                    value: randomData()
+                },
+                {
+                    id: "63",
+                    name: "青海省",
+                    value: randomData()
+                },
+                {
+                    id: "64",
+                    name: "宁夏回族自治区",
+                    value: randomData()
+                },
+                {
+                    id: "65",
+                    name: "新疆维吾尔自治区",
+                    value: randomData()
+                },
+                {
+                    id: "71",
+                    name: "台湾省",
+                    value: randomData()
+                },
+                {
+                    id: "81",
+                    name: "香港特别行政区",
+                    value: randomData()
+                },
+                {
+                    id: "82",
+                    name: "澳门特别行政区",
+                    value: randomData()
+                }
+            ];

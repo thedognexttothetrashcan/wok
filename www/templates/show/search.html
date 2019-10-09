@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding top-table-five">
+                <table class="table table-hover">
+                    <tbody>
+
+                    <tr style="display: none">
+                        <th>AAA</th>
+                        <td>
+                            <select class="form-control select2" data-placeholder="请选择"
+                                    style="width: 100%;" id='selIndustry'>
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="display: none">
+                        <th>BBB</th>
+                        <td>
+                                <select class="form-control select2"  data-placeholder="请选择"
+                                style="width: 100%;" id='selBrand'>
+                        </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Search</th>
+                        <td>
+                            <select class="form-control select2" multiple="multiple" data-placeholder="请选择"
+                                    style="width: 100%;" id='selProdType'>
+
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr style="display:none;">
+                        <th>产品Tag</th>
+                        <td>
+                            <select class="form-control select2" multiple="multiple" data-placeholder="请选择产品Tag"
+                                    style="width: 100%;" id='selProdTag'>
+
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+<div class="row DataExport">
+    <div class="col-lg-7 col-xs-12 mg_bt10 left">
+        <div class="col-lg-4 col-xs-4" style="margin-left: 0;margin-top: 7px;display: none"><b>DDD</b></div>
+        <div class="input-icon pd_lt0 right col-lg-3 col-xs-4" style="margin-left: -20px;display: none">
+            <input type="text" class="form-control input-circle" placeholder="" id='iptProdName'>
+        </div>
+        <div class="input-group col-lg-5 col-xs-5 fl" style="display: none">
+            <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control pull-right" id="reservation">
+        </div>
+        <button class="btn btn-primary mg_lt15 col-lg-1 col-xs-1" id='btnSearch' style="display: none">搜索</button>
+    </div>
+    {# 数据导出先去掉 #}
+    <div class="col-lg-5 col-xs-12 mg_bt10" style="display: none">
+        <button type="button" class="btn btn-danger col-lg-3 col-xs-12 col-lg-offset-9 col-xs-offset-0">数据导出</button>
+    </div>
+</div>
+
+
+
+{% block js_script %}
+
+    <script>
+        $('#iptProdName').val('');
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+            //Date range picker
+            $('#reservation').daterangepicker({
+                format: 'YYYY-DD-MM HH:mm:ss',
+                startDate: moment().add('year', -3)
+                {#autoclose: true#}
+            }, function (start, end, label) {//格式化日期显示框
+
+                {#$('#reservation').html(start.format('DD-MM-YYYY') + ' - ' + end.format('YYYY-MM-DD HH:mm:ss'));#}
+                $('#reservation').html(start.format('YYYY-MM-DD HH:mm:ss') + ' - ' + end.format('YYYY-MM-DD HH:mm:ss'));
+            });
+        });
+
+
+
+        $('#selIndustry').change(function () {
+
+                $.ajax({
+                    url: "/p_list/get_brands/" + $('#selIndustry').val(),
+                    success: function (data) {
+                        $("#selBrand").empty();
+                        $('#selBrand').append("<option value='-1' >请选择</option>")
+                        //console.log(data)
+                        for (var i = 0; i < data.length; i++) {
+                            var option = "<option value='" + data[i].value + "' >" + data[i].name + "</option>";
+
+                            $('#selBrand').append(option)
+                        }
+
+                    }
+                });
+
+
+
+        });
+
+        $('#selBrand').change(function () {
+            $.ajax({
+                url: "/p_list/get_prod_types/" + $('#selBrand').val(),
+
+                success: function (data) {
+                    $("#selProdType").empty();
+                    console.log(data)
+                    for (var i = 0; i < data.length; i++) {
+
+                        var option = "<option value='" + data[i].value + "' >" + data[i].name + "</option>";
+
+                        $('#selProdType').append(option)
+                    }
+
+                }
+            });
+
+        });
+
+    </script>
+{% endblock js_script %}
