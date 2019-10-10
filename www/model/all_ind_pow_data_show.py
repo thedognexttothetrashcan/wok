@@ -28,21 +28,38 @@ def get_all_pow_consum(year):
 
 
 # 新行业排名
-def get_new_ind_top10(year):
-    model_path = path_help('new_ind_top10.csv')
+def get_new_ind_top10(year, tag):
+    if tag == 'new':
+        model_path = path_help('new_ind_top10.csv')
 
-    new_ind_data = pd.read_csv(model_path, encoding='gbk')
+        new_ind_data = pd.read_csv(model_path, encoding='gbk')
+        # print(new_ind_data)
+        new_ind_data = new_ind_data.iloc[:, 1:]
+        new_ind_data.sort_values(by=[new_ind_data.columns[2]], inplace=True)
+        industry_name = new_ind_data[new_ind_data.columns[0]].tolist()
+        industry_num = new_ind_data[new_ind_data.columns[2]].tolist()
 
-    new_ind_data = new_ind_data.iloc[:, 1:]
-    new_ind_data.sort_values(by=[new_ind_data.columns[2]], inplace=True)
-    industry_name = new_ind_data[new_ind_data.columns[0]].tolist()
-    industry_num = new_ind_data[new_ind_data.columns[2]].tolist()
+        return {
+            'industry_name_y': industry_name,
+            'industry_num': industry_num,
+            'year': year
+        }
+    elif tag == 'old':
+        model_path = path_help('old_ind_top10.csv')
 
-    return {
-        'industry_name_y': industry_name,
-        'industry_num': industry_num,
-        'year': year
-    }
+        old_ind_data = pd.read_csv(model_path, encoding='gbk')
+        old_ind_data = old_ind_data.iloc[:, 1:]
+        old_ind_data.sort_values(by=[old_ind_data.columns[2]], inplace=True)
+        industry_name = old_ind_data[old_ind_data.columns[0]].tolist()
+        industry_num = old_ind_data[old_ind_data.columns[2]].tolist()
+
+        return {
+            'industry_name_y': industry_name,
+            'industry_num': industry_num,
+            'year': year
+        }
+    else:
+        return None
 
 
 # 旧行业排名
@@ -90,9 +107,9 @@ def get_pow_speed():
 
     data = {
         "year": speed[speed.columns[0]].tolist(),
-        "old_ind": speed[speed.columns[2]].tolist(),
-        "new_ind": speed[speed.columns[3]].tolist(),
-        "mean": speed[speed.columns[-1]].tolist()
+        "old_ind": (speed[speed.columns[2]]/100000000).tolist(),
+        "new_ind": (speed[speed.columns[3]]/100000000).tolist(),
+        "mean": (speed[speed.columns[-1]]/100000000).tolist()
     }
 
     return data

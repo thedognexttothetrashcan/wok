@@ -51,7 +51,7 @@ function new_old_ind_data(data) {
             {
                 name: '2014年****',
                 type: 'pie',
-                radius: '70%',//饼图的半径大小
+                radius: '60%',//饼图的半径大小
                 center: ['42%', '50%'],//饼图的位置
                 label: {            //饼图图形上的文本标签
                     normal: {

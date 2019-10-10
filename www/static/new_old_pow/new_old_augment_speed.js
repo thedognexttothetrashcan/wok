@@ -5,8 +5,12 @@ function augment_speed(data) {
 
     var option_aug_spd = {
         title: {
-            text: '用电量增速',
-            left: 'left'
+            text: '行业用电量增速',
+            left: 'left',
+            textStyle: {
+                color: 'black',
+                fontSize: 15
+            }
         },
         tooltip: {
             trigger: 'axis',
@@ -33,39 +37,55 @@ function augment_speed(data) {
                 type: 'category',
                 data: data.year,
                 axisPointer: {
-                    type: 'shadow'
-                }
+                    type: 'shadow',
+
+                },
+                splitLine: {
+                        show: false
+                    }
             }
         ],
         yAxis: [
             {
                 type: 'value',
-                show:false,
-                name: '度数',
+                show: true,
+                // name: '千瓦时',
                 // min: 1000,
                 // max: 10000,
                 // interval: 50,
                 axisLabel: {
-                    formatter: '{value} ml'
-                }
+                    formatter: '{value} 亿',
+                    splitLine: {
+                        show: false
+                    }
+                },
+                splitLine: {
+                        show: false
+                    }
             },
             {
                 type: 'value',
-                name: '平均',
-                show:false,
+                name: '单位: 千瓦时',
+                show: true,
                 // min: 1000,
                 // max: 10000,
                 // interval: 5,
                 axisLabel: {
-                    formatter: '{value} °C'
-                }
+                    formatter: '{value} 亿',
+                    splitLine: {
+                        show: false
+                    }
+                },
+                splitLine: {
+                        show: true
+                    }
             }
         ],
         series: [
             {
                 name: '新行业',
                 type: 'bar',
-                data:data.new_ind
+                data: data.new_ind
 
 
             },
@@ -88,8 +108,8 @@ function augment_speed(data) {
 }
 
 $(function () {
-    $.get("/new_old_pow/new_old_ind_speed_up",function (data) {
+    $.get("/new_old_pow/new_old_ind_speed_up", function (data) {
         // console.log(data)
         augment_speed(data.data)
     })
-        });
+});

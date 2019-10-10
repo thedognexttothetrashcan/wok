@@ -30,7 +30,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header" style="color: whitesmoke;">MAIN NAVIGATION</li>
+{#            <li class="header" style="color: whitesmoke;">MAIN NAVIGATION</li>#}
 {#        text-shadow: .2rem 0rem .5rem red,-.2rem 0rem .5rem red,0rem .2rem .5rem red,0rem -.2rem .5rem red;#}
 
             {% if menu_status['p_menu']=='summary' %}
@@ -89,7 +89,7 @@
                     {% else %}
                 <li class="treeview">
             {% endif %}
-            <a href="#">
+            <a href="#" style="display: none">
                 <i class="fa fa-pie-chart"></i>
                 <span>Demo1</span>
                 <span class="pull-right-container">
@@ -143,7 +143,7 @@
             {% endif %}
             <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Demo2</span>
+                <span>Dash-Board</span>
 {#                <span>数据挖掘</span>#}
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -164,7 +164,7 @@
                         {% else %}
                     <li>
                 {% endif %}
-                <a href="{{ url_for('new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>14-18</a></li>
+                <a href="{{ url_for('new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>行业动能指数</a></li>
 
 
             </ul>

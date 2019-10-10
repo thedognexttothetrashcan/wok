@@ -134,7 +134,7 @@ function new_power_top10(data) {
 
 $(function () {
     //console.log($("#new_ind_year").val()+'----000000-----');
-    $.get("/new_old_pow/new_pow_top10?year=" + $("#new_ind_year").val(),
+    $.get("/new_old_pow/new_pow_top10?year=" + $("#new_ind_year").val()+ '&'+'tag=new',
         function (data) {
             //console.log(data.data)
             if (data.msg == 200) {
@@ -149,7 +149,7 @@ $(function () {
 });
 $("#new_ind_year").change(function () {
     //console.log($("#pow_proportion").val()+"--------")
-    $.get('/new_old_pow/new_pow_top10?year=' + $("#new_ind_year").val(),
+    $.get('/new_old_pow/new_pow_top10?year=' + $("#new_ind_year").val() + '&'+'tag=new',
         function (data) {
             //console.log(data.msg)
             //console.log(data.data)
@@ -241,21 +241,22 @@ function old_power_top10(data) {
             type: 'category',
 
             // Old data
-            data: [' 水的生产和供应业',
-                '农、林、牧、渔服务业',
-                ' 煤炭开采和洗选业',
-                ' 石油加工、炼焦及核燃料加工业',
-                ' 橡胶和塑料制品业',
-                ' 电力、热力的生产和供应业',
-                ' 纺织业（轻）',
-                ' 非金属矿物制品业',
-                ' 化学原料及化学制品制造业',
-                ' 黑色金属冶炼及压延加工业'],
+            data: data.industry_name_y,
+            // data: [' 水的生产和供应业',
+            //     '农、林、牧、渔服务业',
+            //     ' 煤炭开采和洗选业',
+            //     ' 石油加工、炼焦及核燃料加工业',
+            //     ' 橡胶和塑料制品业',
+            //     ' 电力、热力的生产和供应业',
+            //     ' 纺织业（轻）',
+            //     ' 非金属矿物制品业',
+            //     ' 化学原料及化学制品制造业',
+            //     ' 黑色金属冶炼及压延加工业'],
 
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: "black",
+                    color: "blue",
                     fontSize: 10,
                     fontWeight: 900,
                 }
@@ -271,7 +272,7 @@ function old_power_top10(data) {
                     normal: {
                         color: function (params) {
                             // 给出颜色组
-                            var colorList = ['#4c8c41'];
+                            var colorList = ['#cda266'];
                             //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
                             return colorList[params.dataIndex]
                         },
@@ -311,10 +312,11 @@ function old_power_top10(data) {
 
 $(function () {
     //console.log($("#old_ind_year").val()+'----000000-----');
-    $.get("/new_old_pow/new_pow_top10?year=" + $("#old_ind_year").val(),
+    $.get("/new_old_pow/new_pow_top10?year=" + $("#old_ind_year").val()+ '&'+'tag=old',
         function (data) {
             // console.log(data.data)
             if (data.msg == 200) {
+                console.log(data.data)
                 old_power_top10(data.data)
             } else {
                 alert("信息不存在")
@@ -326,11 +328,12 @@ $(function () {
 });
 $("#old_ind_year").change(function () {
     //console.log($("#pow_proportion").val()+"--------")
-    $.get('/new_old_pow/new_pow_top10?year=' + $("#old_ind_year").val(),
+    $.get('/new_old_pow/new_pow_top10?year=' + $("#old_ind_year").val()+ '&'+'tag=old',
         function (data) {
             //console.log(data.msg)
             // console.log(data.data)
             if (data.msg == 200) {
+                console.log(data.data)
                 old_power_top10(data.data)
             } else {
                 alert("信息不存在")

@@ -1,6 +1,6 @@
 from flask import Flask
 
-from www.views import test, test2, test3
+from www.views import test, test2, power_view
 
 
 def create_app(test_config=None):
@@ -13,6 +13,6 @@ def create_app(test_config=None):
 
     app.register_blueprint(test.t)
     app.register_blueprint(test2.t1)
-    app.register_blueprint(test3.new_old_pow)
+    app.register_blueprint(power_view.new_old_pow)
 
     return app

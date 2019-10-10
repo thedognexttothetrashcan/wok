@@ -14,7 +14,7 @@ def t3_index():
 
 @new_old_pow.route('/index1/')
 def t3_index1():
-    return render_template('{}/show_data2.html'.format('show'),
+    return render_template('{}/power_data_show.html'.format('show'),
                            menu_status={'c_menu': '14-18', 'p_menu': 'dataDig'},
                            current_industry='show')
 
@@ -34,9 +34,11 @@ def power_proportion():
 @new_old_pow.route('/new_pow_top10/')
 def new_ind_top10():
     year = request.args.get('year')
-    data = all_ind_pow_data_show.get_new_ind_top10(year)
+    tag = request.args.get('tag')
+    data = all_ind_pow_data_show.get_new_ind_top10(year, tag)
     # print('*' * 100)
-    # print(year)
+    # print(data)
+    # print(tag)
     # print('*' * 100)
     return jsonify({'data': data, 'msg': 200})
 
@@ -52,6 +54,7 @@ def new_ind_index():
 @new_old_pow.route('old_ind_index')
 def old_ind_index():
     pass
+
 
 # 新旧行业增速
 @new_old_pow.route('new_old_ind_speed_up')
