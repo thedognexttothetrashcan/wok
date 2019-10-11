@@ -36,7 +36,7 @@
 
         .power_num {
             position: relative;
-            width: 15%;
+            width: 30%;
             height: 250px;
             /*background-color: yellow;*/
             float: left;
@@ -44,7 +44,7 @@
 
         .GDP_num {
             position: relative;
-            width: 15%;
+            width: 30%;
             height: 250px;
             background-color: gold;
             float: left;
