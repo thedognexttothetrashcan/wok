@@ -256,7 +256,7 @@ function old_power_top10(data) {
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: "blue",
+                    color: "black",
                     fontSize: 10,
                     fontWeight: 900,
                 }
@@ -272,7 +272,7 @@ function old_power_top10(data) {
                     normal: {
                         color: function (params) {
                             // 给出颜色组
-                            var colorList = ['#cda266'];
+                            var colorList = ['red'];
                             //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
                             return colorList[params.dataIndex]
                         },

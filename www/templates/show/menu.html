@@ -1,5 +1,5 @@
 <style>
-    .treeview-menu > li > a{
+    .treeview-menu > li > a {
         left: 20px;
     }
 </style>
@@ -19,19 +19,19 @@
         </div>
         <!-- search form -->
         <!--<div class="nav-topSelect">-->
-            <!--<select class="form-control select2" tabindex="-1" aria-hidden="true" onchange='change_industry()' id='selChangeIndustry'>-->
-                <!--<option selected="selected">选择行业</option>-->
+        <!--<select class="form-control select2" tabindex="-1" aria-hidden="true" onchange='change_industry()' id='selChangeIndustry'>-->
+        <!--<option selected="selected">选择行业</option>-->
 
-                <!--<option value="">1</option>-->
-                <!--<option value="">2</option>-->
-                <!--<option value="">3</option>-->
-            <!--</select>-->
+        <!--<option value="">1</option>-->
+        <!--<option value="">2</option>-->
+        <!--<option value="">3</option>-->
+        <!--</select>-->
         <!--</div>-->
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-{#            <li class="header" style="color: whitesmoke;">MAIN NAVIGATION</li>#}
-{#        text-shadow: .2rem 0rem .5rem red,-.2rem 0rem .5rem red,0rem .2rem .5rem red,0rem -.2rem .5rem red;#}
+            {#            <li class="header" style="color: whitesmoke;">MAIN NAVIGATION</li>#}
+            {#        text-shadow: .2rem 0rem .5rem red,-.2rem 0rem .5rem red,0rem .2rem .5rem red,0rem -.2rem .5rem red;#}
 
             {% if menu_status['p_menu']=='summary' %}
                 <li class="active treeview">
@@ -51,7 +51,8 @@
                     <li>
                 {% endif %}
 
-                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>Dashboard</a></li>
+                <a href="{{ url_for('t.index') }}" style="display: none"><i class="fa fa-circle-o"></i>Dashboard</a>
+                </li>
                 {% if menu_status['c_menu']=='p_list' %}
                     <li class="active">
                         {% else %}
@@ -144,7 +145,7 @@
             <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>Dash-Board</span>
-{#                <span>数据挖掘</span>#}
+                {#                <span>数据挖掘</span>#}
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -157,16 +158,20 @@
                     <li>
                 {% endif %}
                 <a href="{{ url_for('t1.t1_index') }}"><i class="fa fa-circle-o"></i>demo1</a></li>
-                <li style="display: none"><a href="#"><i class="fa fa-circle-o"></i>观点聚类</a></li>
 
-            {% if menu_status['c_menu']=='14-18' %}
+                {% if menu_status['c_menu']=='14-18' %}
                     <li class="active">
                         {% else %}
                     <li>
                 {% endif %}
                 <a href="{{ url_for('new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>行业动能指数</a></li>
 
-
+                {% if menu_status['c_menu']=='tour' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('pow_tour.tour_index') }}"><i class="fa fa-circle-o"></i>电力旅游指数</a></li>
             </ul>
 
         </ul>

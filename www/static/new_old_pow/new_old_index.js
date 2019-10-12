@@ -153,7 +153,7 @@ function new_old_index(data) {
         grid: {
             top: '20%',//距上边距
 
-            left: '25%',//距离左边距
+            left: '10%',//距离左边距
 
             right: '10%',//距离右边距
 

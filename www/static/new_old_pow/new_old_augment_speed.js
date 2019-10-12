@@ -41,8 +41,8 @@ function augment_speed(data) {
 
                 },
                 splitLine: {
-                        show: false
-                    }
+                    show: false
+                }
             }
         ],
         yAxis: [
@@ -60,8 +60,8 @@ function augment_speed(data) {
                     }
                 },
                 splitLine: {
-                        show: false
-                    }
+                    show: false
+                }
             },
             {
                 type: 'value',
@@ -77,18 +77,24 @@ function augment_speed(data) {
                     }
                 },
                 splitLine: {
-                        show: true
-                    }
+                    show: true
+                }
             }
         ],
         series: [
             {
                 name: '新行业',
                 type: 'bar',
-                data: data.new_ind
+                data: data.new_ind,
+                itemStyle: {
+                    //通常情况下：
+                    normal: {
+                        //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                        color: '#44590e'
+                        }
+                    },
 
-
-            },
+                },
             {
                 name: '旧行业',
                 type: 'bar',
@@ -107,9 +113,9 @@ function augment_speed(data) {
 
 }
 
-$(function () {
-    $.get("/new_old_pow/new_old_ind_speed_up", function (data) {
-        // console.log(data)
-        augment_speed(data.data)
-    })
-});
+    $(function () {
+        $.get("/new_old_pow/new_old_ind_speed_up", function (data) {
+            // console.log(data)
+            augment_speed(data.data)
+        })
+    });
