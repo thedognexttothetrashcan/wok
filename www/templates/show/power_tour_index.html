@@ -6,9 +6,56 @@
 {% block CSS %}
 
     <style>
+        html, body {
+            margin: auto;
+            background: whitesmoke;
+        }
 
-        h1 {
-            background: #00a7d0;
+        .all_back_color {
+            background: whitesmoke;
+        }
+
+        #chengde_map {
+            width: 40%;
+            height: 600px;
+            background: gray;
+            float: left;
+        }
+
+        {#<!-- 旅游和增速 -->#}
+        #proportion_and_speed {
+            width: 100%;
+            height: 300px;
+            background: whitesmoke;
+        }
+
+        #tour {
+            width: 45%;
+            height: 300px;
+            background: whitesmoke;
+            float: left;
+        }
+
+        .inds_use_pow_speed {
+            width: 55%;
+            height: 300px;
+            {#background: indianred;#}
+            float: left;
+        }
+
+        #num {
+            width: 60%;
+            height: 300px;
+            background: red;
+            float: left;
+
+        }
+
+        #tour_index {
+            width: 60%;
+            height: 300px;
+            background: #0d6aad;
+            float: right;
         }
 
 
@@ -21,16 +68,42 @@
           href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 
 
-    <section class="panel">
-    <div><h2>12345678</h2></div>
+    <section class="panel all_back_color">
+        <div id="all">
+            <div id="proportion_and_speed">
+                <div id="tour">
+                    <div class="nav-topSelect">
+                        <select class="form-control select2" tabindex="-1" aria-hidden="true" id="pow_proportion"
+                                style="height:20px;width: 180px">
+                            <option selected="selected">2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                        </select>
+                    </div>
+                    <div id="tour_main" style="width: 100%;height: 300px;"></div>
+                </div>
+                <div class="inds_use_pow_speed" id="tour_speed">行业用电增速</div>
+            </div>
+            <div id="chengde_map">
+                <img src="{{ url_for('static', filename='img/cheng_de.png') }}" alt="">
+            </div>
+            <div id="num">旅游人数、收入</div>
+            <div id="tour_index">旅游发展指数</div>
+        </div>
 
     </section>
+
+
     <script type="text/javascript"
             src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript"
             src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+    <!-- 导入my JS 文件 -->
+    <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_use_pow_proportion.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_tour_speed.js') }}"></script>
+
 
 
     <script type="text/javascript">

@@ -87,10 +87,8 @@ function augment_speed(data) {
                 type: 'bar',
                 data: data.new_ind,
                 itemStyle: {
-                    //通常情况下：
                     normal: {
-                        //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
-                        color: '#44590e'
+                        color: '#44590e' // 柱状图颜色
                         }
                     },
 

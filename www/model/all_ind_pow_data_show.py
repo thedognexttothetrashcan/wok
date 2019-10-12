@@ -5,7 +5,7 @@ import pandas as pd
 def path_help(path):
     dir_path = os.path.join(
         os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..")))
-    return os.path.join(dir_path, 'www/data/{}'.format(path))
+    return os.path.join(dir_path, 'www/data/all_national_power/{}'.format(path))
 
 
 # 新旧行业占比
