@@ -1,7 +1,9 @@
 import os
+from json import dumps
+
 import pandas as pd
 
-
+# 获取当前path
 def path_help(path):
     dir_path = os.path.join(
         os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..")))
@@ -32,19 +34,19 @@ def get_cd_proportion(year):
 
 # 旅游行业增速
 def get_cd_tour_speed():
-    model_path = path_help('ind_tb_res.csv')
+    model_path = path_help('speed.csv')
 
     res = pd.read_csv(model_path)
 
-    res.rename(columns={res.columns[0]: 'inds'})
+    # res.rename(columns={res.columns[0]: 'inds'})
     res.rename(columns={res.columns[0]: 'inds'}, inplace=True)
 
     res.set_index('inds', inplace=True, drop=True)
 
     # 行业
-    inds = res.index
+    # inds = res.index
     # 年份
-    year = res.columns
+    year = list(res.columns)
 
     hotel = res.loc['hotel', :].tolist()
     dining = res.loc['dining', :].tolist()
@@ -52,15 +54,61 @@ def get_cd_tour_speed():
     # print(hotel,dining,transport)
 
     # [res.loc[i, :].tolist() for i in res.index]
-
-    # data = {
-    #     'year': year,
-    #     'hotel': hotel,
-    #     'dining': dining,
-    #     'transport': transport
-    # }
+    # TODO
+    data = {
+        'year': year,
+        'hotel': hotel,
+        'dining': dining,
+        'transport': transport
+    }
     # print(hotel)
-    return get_cd_proportion(2017)
+    return data
 
 
-# print(get_cd_tour_speed())
+# 旅游行业需求增速
+def get_cd_need_speed():
+    model_path = path_help('need_speed.csv')
+
+    res = pd.read_csv(model_path)
+
+    # res.rename(columns={res.columns[0]: 'inds'})
+    res.rename(columns={res.columns[0]: 'inds'}, inplace=True)
+
+    res.set_index('inds', inplace=True, drop=True)
+
+    # 行业
+    # inds = res.index
+    # 年份
+    year = list(res.columns)
+
+    hotel = res.loc['hotel', :].tolist()
+    dining = res.loc['dining', :].tolist()
+    transport = res.loc['transport', :].tolist()
+    # print(hotel, dining, transport)
+
+
+    data = {
+        'year': year,
+        'hotel': hotel,
+        'dining': dining,
+        'transport': transport
+    }
+    # print(hotel)
+    return data
+
+
+# 旅游行业指数
+def get_cd_tour_index():
+    model_path = path_help('tour_develop_index.csv')
+
+    res = pd.read_csv(model_path, header=None)
+    res.columns = ['year', 'index_num']
+    # print(res['year'].to_list())
+    # print(res['index_num'].to_list())
+    data = {
+        'year': [i[:-3] for i in res['year'].tolist()],
+        'index_num': res['index_num'].tolist()
+    }
+    return data
+
+

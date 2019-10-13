@@ -1,12 +1,12 @@
-var myChart_old_index = echarts.init(document.getElementById('tour_speed'));
+var myChart_need_speed = echarts.init(document.getElementById('need_speed'));
 
-function new_old_index(data) {
+function need_speed(data) {
     // 基于准备好的dom，初始化echarts实例
 
 
     var option_old = {
         title: {
-            text: '旅游行业用电增速',
+            text: '旅游行业用电需求增速',
             x: 'left',
             textStyle: {
                 color: 'black',
@@ -39,24 +39,25 @@ function new_old_index(data) {
         yAxis: {
             type: 'value'
         },
+        //住宿blue 餐饮 green 交通red 人数yellow 收入gray
         series: [{
             name: '住宿',
             color:'blue',
             data: data.hotel,
-            // data: [13.60950852, 15.97275969, 11.06062234],
+            // data: [21.683403166025702, 31.004150617660148, 39.74863689517768],
             type: 'line'
         }, {
             name: '餐饮',
             color:'green',
             data: data.dining,
-            // data: [17.28954656, 26.66247702, 27.11079536],
+            // data: [13.674300333918207, 28.29148793089411, 18.478394631665264],
             type: 'line'
         },
             {
                 name: '交通',
                 color: 'red',
                 data: data.transport,
-                // data: [66.18314333, 68.76817292199202, 70.21250355],
+                // data: [2.4490867108187517, 0.2730189351471954, 3.385821394719653],
                 type: 'line'
             }
         ]
@@ -64,23 +65,23 @@ function new_old_index(data) {
 
 
     // myChart_new_index.setOption(option_new);
-    myChart_old_index.setOption(option_old);
+    myChart_need_speed.setOption(option_old);
 }
 
 $(function () {
-    $.get("/pow_tour/tour_speed",
+    $.get("/pow_tour/tour_need_speed",
         function (data) {
-            var data = JSON.parse(data);
             // console.log('======================================')
+            var data = JSON.parse(data);
             // console.log(data.data)
             // console.log('========================================')
             if (data.msg == 200) {
-                new_old_index(data.data)
+                need_speed(data.data)
             } else {
                 alert("信息不存在")
             }
 
         }
     )
-    // new_old_index()
+    // need_speed()
 });

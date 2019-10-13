@@ -33,33 +33,49 @@ def get_new_ind_top10(year, tag):
         model_path = path_help('new_ind_top10.csv')
 
         new_ind_data = pd.read_csv(model_path, encoding='gbk')
-        # print(new_ind_data)
-        new_ind_data = new_ind_data.iloc[:, 1:]
-        new_ind_data.sort_values(by=[new_ind_data.columns[2]], inplace=True)
-        industry_name = new_ind_data[new_ind_data.columns[0]].tolist()
-        industry_num = new_ind_data[new_ind_data.columns[2]].tolist()
+        # print(new_ind_data.columns)
 
-        return {
-            'industry_name_y': industry_name,
-            'industry_num': industry_num,
-            'year': year
-        }
-    elif tag == 'old':
-        model_path = path_help('old_ind_top10.csv')
+        year_data = [i for i in new_ind_data.columns if i.isdigit()]
+        new_name = ['chinese_ind_name2013',
+                    'chinese_ind_name2014',
+                    'chinese_ind_name2015',
+                    'chinese_ind_name2016',
+                    'chinese_ind_name2017',
+                    'chinese_ind_name2018']
 
-        old_ind_data = pd.read_csv(model_path, encoding='gbk')
-        old_ind_data = old_ind_data.iloc[:, 1:]
-        old_ind_data.sort_values(by=[old_ind_data.columns[2]], inplace=True)
-        industry_name = old_ind_data[old_ind_data.columns[0]].tolist()
-        industry_num = old_ind_data[old_ind_data.columns[2]].tolist()
+        for v in range(len([i for i in new_ind_data.columns if i.isdigit()])):
+            new_ind_data.rename(columns={[j for j in new_ind_data.columns if j.startswith('chi')][v]: new_name[v]},
+                                inplace=True)
 
-        return {
-            'industry_name_y': industry_name,
-            'industry_num': industry_num,
-            'year': year
-        }
-    else:
-        return None
+        new_ind_data.to_csv('/Users/xingwenhao/work_pro/www/data/all_national_powernew_ind_top10.csv')
+        # print(new_ind_data.columns)
+        # new_ind_data[['chinese_ind_name' + str(year), str(year)]]
+
+
+        # return {
+        #     'industry_name_y': industry_name,
+        #     'industry_num': industry_num,
+        #     'year': year
+        # }
+    # elif tag == 'old':
+    #     model_path = path_help('old_ind_top10.csv')
+    #
+    #     old_ind_data = pd.read_csv(model_path, encoding='gbk')
+    #     old_ind_data = old_ind_data.iloc[:, 1:]
+    #     old_ind_data.sort_values(by=[old_ind_data.columns[2]], inplace=True)
+    #     industry_name = old_ind_data[old_ind_data.columns[0]].tolist()
+    #     industry_num = old_ind_data[old_ind_data.columns[2]].tolist()
+    #
+    #     return {
+    #         'industry_name_y': industry_name,
+    #         'industry_num': industry_num,
+    #         'year': year
+    #     }
+    # else:
+    #     return None
+
+
+get_new_ind_top10(2016, 'new')
 
 
 # 旧行业排名
@@ -107,9 +123,9 @@ def get_pow_speed():
 
     data = {
         "year": speed[speed.columns[0]].tolist(),
-        "old_ind": (speed[speed.columns[2]]/100000000).tolist(),
-        "new_ind": (speed[speed.columns[3]]/100000000).tolist(),
-        "mean": (speed[speed.columns[-1]]/100000000).tolist()
+        "old_ind": (speed[speed.columns[2]] / 100000000).tolist(),
+        "new_ind": (speed[speed.columns[3]] / 100000000).tolist(),
+        "mean": (speed[speed.columns[-1]] / 100000000).tolist()
     }
 
     return data

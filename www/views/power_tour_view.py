@@ -1,3 +1,5 @@
+from json import dumps
+
 from flask import Flask, Blueprint, render_template, jsonify, request
 
 from www.model import cheng_de_tour_index
@@ -24,14 +26,31 @@ def tour_proportion():
     return jsonify({"msg": 200, "data": data})
 
 
-# 承德旅游用电量占比
+# 承德旅游用电量增速
 @pow_tour.route('/tour_speed/')
 def tour_speed():
     data = cheng_de_tour_index.get_cd_tour_speed()
     # print(data)
     # return jsonify({"msg": 200, "data": data})
-    return jsonify({'msg':200,'data':''})
+    # return jsonify({'msg':200,'data':''})
+    return dumps({"msg": 200, "data": data})
 
+
+# 承德旅游用电量需求增速
+@pow_tour.route('/tour_need_speed/')
+def tour_need_speed():
+    data = cheng_de_tour_index.get_cd_need_speed()
+    # print(data)
+    return dumps({"msg": 200, "data": data})
+
+
+# 承德旅游发展指数
+@pow_tour.route('/tour_dev_index/')
+def tour_dev_index():
+    data = cheng_de_tour_index.get_cd_tour_index()
+    # print(data)
+    # return jsonify({"msg": 200, "data": data})
+    return jsonify({'msg':200,'data':data})
 
 
 
