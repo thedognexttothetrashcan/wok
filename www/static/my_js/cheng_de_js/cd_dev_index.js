@@ -44,7 +44,7 @@ function tour_index(data) {
             // ]
         },
         title: {
-            text: '城市旅游发展指数',
+            text: '承德电力旅游发展指数',
             textStyle: {
                 color: 'black',
                 fontSize: 18

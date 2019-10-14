@@ -39,23 +39,30 @@
         .inds_use_pow_speed {
             width: 30%;
             height: 300px;
-            {#background: indianred;#}
-            float: right;
+        {#background: indianred;#} float: right;
         }
 
         #peo_inc {
-            width: 60%;
-            height: 300px;
-            {#background: red;#}
-            float: left;
+        {#width: 15%;#}{#height: 300px;#}{#background: red;#}{#float: left;#}
 
+        }
+
+        .peo_inc {
+            width: 15%;
+            height: 300px;
+        {#background: red;#} float: left;
         }
 
         #tour_index {
             width: 60%;
             height: 300px;
-            {#background: #0d6aad;#}
-            float: right;
+        {#background: #0d6aad;#} float: right;
+        }
+
+        #tour_peo_inc_title {
+            background: whitesmoke;
+            text-align: center;
+            font-size: 17px;
         }
 
 
@@ -89,8 +96,12 @@
                 <div class="inds_use_pow_speed" id="tour_speed">行业用电增速</div>
                 <div class="inds_use_pow_speed" id="need_speed">行业用电需求增速</div>
             </div>
-
-            <div id="peo_inc">旅游人数、收入</div>
+            <div id="tour_peo_inc_title"><b>旅游行业用电与旅游人数、收入分析</b>
+            </div>
+            <div class="peo_inc" id="peo_inc">旅游人数、收入</div>
+            <div class="peo_inc" id="peo_inc1">旅游人数、收入</div>
+            <div class="peo_inc" id="peo_inc2">旅游人数、收入</div>
+            <div class="peo_inc" id="peo_inc3">旅游人数、收入</div>
             <div id="tour_index">旅游发展指数</div>
         </div>
 
@@ -103,11 +114,15 @@
             src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
     <!-- 导入my JS 文件 -->
-    <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_use_pow_proportion.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_tour_speed.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='my_js/cheng_de_js/cd_use_pow_proportion.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='my_js/cheng_de_js/cd_tour_speed.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_dev_index.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_poeple_income.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='my_js/cheng_de_js/cd_need_speed.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='my_js/cheng_de_js/cd_poeple_income.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='my_js/cheng_de_js/cd_need_speed.js') }}"></script>
 
 
 

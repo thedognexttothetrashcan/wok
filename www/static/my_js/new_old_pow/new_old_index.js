@@ -93,7 +93,7 @@ function new_old_index(data) {
         // },
         legend: {
             // orient: 'vertical',
-            x: 'right',
+            x: 'center',
             // top: '8%',//距上边距
             //top: 6,
             // itemWidth: 8,
@@ -143,7 +143,7 @@ function new_old_index(data) {
             //name: '数量',
 
             type: 'value',
-            min: 0,
+            min: 70,
             max: 200,
             //axisLabel: {
             //    interval: 0,
@@ -169,10 +169,10 @@ function new_old_index(data) {
                 itemStyle: {normal: {color: 'red'}},
                 type: 'line',
                 lineStyle: {
-                    width: 1, //default value:2,
+                    width: 2, //default value:2,
                     color: "red"
                 },
-                //itemStyle : { normal: {label : {show: true}}}
+                // itemStyle : { normal: {label : {show: true}}}
             },
             {
                 name:"新行业",
@@ -180,7 +180,7 @@ function new_old_index(data) {
                 type: 'line',
                 itemStyle: {normal: {color: 'green'}},
                 lineStyle: {
-                    width: 1, //default value:2,
+                    width: 2, //default value:2,
                     color: "green"
                 },
                 //itemStyle : { normal: {label : {show: true}}}

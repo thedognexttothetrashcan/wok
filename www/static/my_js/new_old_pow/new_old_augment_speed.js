@@ -89,10 +89,10 @@ function augment_speed(data) {
                 itemStyle: {
                     normal: {
                         color: '#44590e' // 柱状图颜色
-                        }
-                    },
-
+                    }
                 },
+
+            },
             {
                 name: '旧行业',
                 type: 'bar',
@@ -111,9 +111,9 @@ function augment_speed(data) {
 
 }
 
-    $(function () {
-        $.get("/new_old_pow/new_old_ind_speed_up", function (data) {
-            // console.log(data)
-            augment_speed(data.data)
-        })
-    });
+$(function () {
+    $.get("/new_old_pow/new_old_ind_speed_up", function (data) {
+        // console.log(data)
+        augment_speed(data.data)
+    })
+});

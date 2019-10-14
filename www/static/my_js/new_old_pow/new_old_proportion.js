@@ -9,33 +9,33 @@ function new_old_ind_data(data) {
             x: 'left',
             textStyle: {
                 color: 'black',
-                fontSize: 14
+                fontSize: 18
             }
         },
         //tooltip: {
         //    trigger: 'item',
         //    formatter: "{a} <br/>{b} : {c} "
         //},
-        grid: {
-            top: '12%',//距上边距
-            left: '36%',//距离左边距
-            right: '10%',//距离右边距
-            bottom: '20%',//距离下边距
-            //containLabel: true,
-
-        },
+        // grid: {
+        //     top: '12%',//距上边距
+        //     left: '6%',//距离左边距
+        //     right: '10%',//距离右边距
+        //     bottom: '20%',//距离下边距
+        //     //containLabel: true,
+        //
+        // },
         legend: {
             orient: 'vertical',
             x: 'left',
             top: '8%',//距上边距
             //top: 6,
-            itemWidth: 8,
-            itemHeight: 8,
+            itemWidth: 12,
+            itemHeight: 12,
             formatter: '{name}',
             textStyle: {
                 color: 'black',
                 fontWeight: 500,
-                fontSize: 10
+                fontSize: 16
             },
             data: [{name: '新行业', icon: 'rect', color: 'black'},
                 {name: '旧行业', icon: 'rect', color: 'black'},
@@ -51,8 +51,8 @@ function new_old_ind_data(data) {
             {
                 name: '2014年****',
                 type: 'pie',
-                radius: '60%',//饼图的半径大小
-                center: ['42%', '50%'],//饼图的位置
+                radius: '80%',//饼图的半径大小
+                center: ['57%', '50%'],//饼图的位置
                 label: {            //饼图图形上的文本标签
                     normal: {
                         show: true,

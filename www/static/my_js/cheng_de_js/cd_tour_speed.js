@@ -37,7 +37,9 @@ function new_old_index(data) {
             // data: [2016, 2017, 2018]
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            min: 100,
+            max: 300,
         },
         series: [{
             name: '住宿',

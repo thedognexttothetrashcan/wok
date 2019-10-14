@@ -80,8 +80,8 @@
                         </span>
                     </div>
             -->
-        <div style="background-color: #ecf0f5"><span style="margin-left: 200px">新旧行业用电量占比--全国</span><span
-                style="margin-left: 450px">行业用电量排名--全国</span></div>
+        <div style="background-color: #ecf0f5"><span style="margin-left: 200px"><b>新旧行业用电量占比--全国</b></span><span
+                style="margin-left: 450px"><b>行业用电量排名--全国</b></span></div>
         <div id="top4" style="width: 100%;height: 300px;">
             <div class="new_old_top1">
                 <span id="time_search">
@@ -99,9 +99,11 @@
                     </div>
                 </span>
                 <div id="use_pow_proportion"
-                     style="width: 305px;overflow: auto;height: 270px;"></div>
+{#                     style="width: 305px;overflow: auto;height: 270px;"></div>#}
+                     style="width: 100%;overflow: auto;height: 270px;"></div>
             </div>
-            <div class="new_old_top1">
+            <!-- 先隐藏GDP -->
+            <div class="new_old_top1" style="display: none">
                 <span id="time_search">
                 <div id="key_num_select1" style="width: 120px;height: 30px">
                     <div class="nav-topSelect">
@@ -167,7 +169,7 @@
 {#            <div id="new_pow_index" class="power_num" style=""></div>#}
             <div id="old_pow_index" class="power_num" style=""></div>
 {#            <div class="GDP_num">3</div>#}
-            <div class="GDP_num" style="background-color: deepskyblue">4</div>
+            <div class="GDP_num" style="background-color: deepskyblue;display: none">4</div>
             <div id="growth_rate">行业用电量增速</div>
         </div>
     </section>

@@ -37,18 +37,20 @@ function need_speed(data) {
             // data: [2016, 2017, 2018]
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            min: 100,
+            max: 240,
         },
         //住宿blue 餐饮 green 交通red 人数yellow 收入gray
         series: [{
             name: '住宿',
-            color:'blue',
+            color: 'blue',
             data: data.hotel,
             // data: [21.683403166025702, 31.004150617660148, 39.74863689517768],
             type: 'line'
         }, {
             name: '餐饮',
-            color:'green',
+            color: 'green',
             data: data.dining,
             // data: [13.674300333918207, 28.29148793089411, 18.478394631665264],
             type: 'line'
