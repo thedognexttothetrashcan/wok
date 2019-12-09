@@ -49,7 +49,7 @@
         var app = {};
         option = null;
         //后台给的城市车商数量的值
-        /!* var data = [
+        /!* var source_data = [
          {name: '海门', value: 9},
          {name: '鄂尔多斯', value: 12},
          {name: '招远', value: 12},
@@ -241,7 +241,7 @@
          {name: '武汉', value: 273},
          {name: '大庆', value: 279}
          ];*!/
-        var data = json;
+        var source_data = json;
 
         //地理坐标图(城市坐标)
         var geoCoordMap ={
@@ -642,16 +642,16 @@
         };
 
         //转换数据
-        var convertData = function (data) {
+        var convertData = function (source_data) {
             var res = [];
-            for (var i = 0; i < data.length; i++) {
-                var geoCoord = geoCoordMap[data[i].name]; //取到地理坐标的经纬度值
-                //alert(data[i].name+"::"+geoCoord);
+            for (var i = 0; i < source_data.length; i++) {
+                var geoCoord = geoCoordMap[source_data[i].name]; //取到地理坐标的经纬度值
+                //alert(source_data[i].name+"::"+geoCoord);
                 if (geoCoord) {
-                    //alert(geoCoord.concat(data[i].value));
+                    //alert(geoCoord.concat(source_data[i].value));
                     res.push({
-                        name: data[i].name,
-                        value: geoCoord.concat(data[i].value) //坐标和值 [{name:cityName,value:[经度，纬度，值]}] = res;
+                        name: source_data[i].name,
+                        value: geoCoord.concat(source_data[i].value) //坐标和值 [{name:cityName,value:[经度，纬度，值]}] = res;
                     });
                 }
             }
@@ -679,7 +679,7 @@
                 orient: 'vertical',
                 y: 'bottom',
                 x:'right',
-                data:['pm2.5'],
+                source_data:['pm2.5'],
                 textStyle: {
                     color: '#fff'
                 }
@@ -708,7 +708,7 @@
                     name: '车商数量', //series名称
                     type: 'scatter', //series图表类型
                     coordinateSystem: 'geo', //series坐标系类型
-                    data: convertData(data), //series数据内容 （添加我的数据）
+                    source_data: convertData(source_data), //series数据内容 （添加我的数据）
                     symbolSize: function (val) {  //符号大小
                         return val[2] / 10;
                     },
@@ -732,7 +732,7 @@
                     name: 'Top 5',
                     type: 'effectScatter', //散射效应
                     coordinateSystem: 'geo', //协调系统
-                    data: convertData(data.sort(function (a, b) {
+                    source_data: convertData(source_data.sort(function (a, b) {
                         return b.value - a.value;
                     }).slice(0, 5)),
                     symbolSize: function (val) {  //符号大小
@@ -766,8 +766,8 @@
         }
     }*/
    /* $(function(){
-        $.post("/__sys/ajax_new.aspx?rmd="+ Math.random(),{"type":"ShopCity"},function(data,textStatus){
-            var json = eval("("+ data +")");
+        $.post("/__sys/ajax_new.aspx?rmd="+ Math.random(),{"type":"ShopCity"},function(source_data,textStatus){
+            var json = eval("("+ source_data +")");
             console.log(json);
             if(json){
                 chart(json);
@@ -976,7 +976,7 @@
          {name: '武汉', value: 273},
          {name: '大庆', value: 279}
          ];
-        //var data = json;
+        //var source_data = json;
 
         //地理坐标图(城市坐标)
         var geoCoordMap ={
@@ -1381,9 +1381,9 @@
             var res = [];
             for (var i = 0; i < data.length; i++) {
                 var geoCoord = geoCoordMap[data[i].name]; //取到地理坐标的经纬度值
-                //alert(data[i].name+"::"+geoCoord);
+                //alert(source_data[i].name+"::"+geoCoord);
                 if (geoCoord) {
-                    //alert(geoCoord.concat(data[i].value));
+                    //alert(geoCoord.concat(source_data[i].value));
                     res.push({
                         name: data[i].name,
                         value: geoCoord.concat(data[i].value) //坐标和值 [{name:cityName,value:[经度，纬度，值]}] = res;

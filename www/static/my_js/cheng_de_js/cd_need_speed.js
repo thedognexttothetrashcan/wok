@@ -34,7 +34,7 @@ function need_speed(data) {
             // name:'日期',
             type: 'category',
             data: data.year
-            // data: [2016, 2017, 2018]
+            // source_data: [2016, 2017, 2018]
         },
         yAxis: {
             type: 'value',
@@ -46,20 +46,20 @@ function need_speed(data) {
             name: '住宿',
             color: 'blue',
             data: data.hotel,
-            // data: [21.683403166025702, 31.004150617660148, 39.74863689517768],
+            // source_data: [21.683403166025702, 31.004150617660148, 39.74863689517768],
             type: 'line'
         }, {
             name: '餐饮',
             color: 'green',
             data: data.dining,
-            // data: [13.674300333918207, 28.29148793089411, 18.478394631665264],
+            // source_data: [13.674300333918207, 28.29148793089411, 18.478394631665264],
             type: 'line'
         },
             {
                 name: '交通',
                 color: 'red',
                 data: data.transport,
-                // data: [2.4490867108187517, 0.2730189351471954, 3.385821394719653],
+                // source_data: [2.4490867108187517, 0.2730189351471954, 3.385821394719653],
                 type: 'line'
             }
         ]
@@ -75,7 +75,7 @@ $(function () {
         function (data) {
             // console.log('======================================')
             var data = JSON.parse(data);
-            // console.log(data.data)
+            // console.log(source_data.source_data)
             // console.log('========================================')
             if (data.msg == 200) {
                 need_speed(data.data)

@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function kMeans(data, k) {
 
 	        var size = arraySize(data);
-	        // create array to assign data points to centroids, also holds SE of each point
+	        // create array to assign source_data points to centroids, also holds SE of each point
 	        var clusterAssigned = zeros(size[0], 2);
 	        var centroids = createRandCent(data, k);
 	        var clusterChanged = true;
@@ -357,7 +357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var isNumber = number.isNumber;
 
 	    /**
-	     * Data preprocessing, filter the wrong data object.
+	     * Data preprocessing, filter the wrong source_data object.
 	     *  for example [12,] --- missing y value
 	     *              [,12] --- missing x value
 	     *              [12, b] --- incorrect y value
@@ -368,7 +368,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function dataPreprocess(data) {
 
 	        if (!isArray(data)) {
-	            throw new Error('Invalid data type, you should input an array');
+	            throw new Error('Invalid source_data type, you should input an array');
 	        }
 	        var predata = [];
 	        var arraySize = size(data);
@@ -661,7 +661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * If the raw data include [0,0] point, we should choose linearThroughOrigin
+	         * If the raw source_data include [0,0] point, we should choose linearThroughOrigin
 	         *   instead of linear.
 	         * @param  {Array.<Array>} data  two-dimensional number array
 	         * @return {Object}
@@ -946,7 +946,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Is a method for computing the max value of a list of numbers,
-	     * which will filter other data types.
+	     * which will filter other source_data types.
 	     * @param  {Array.<number>} data
 	     * @return {number}
 	     */
@@ -1038,7 +1038,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Is a method for computing the mean value of a list of numbers,
-	     * which will filter other data types.
+	     * which will filter other source_data types.
 	     * @param  {Array.<number>} data
 	     * @return {number}
 	     */
@@ -1070,7 +1070,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Is a method for computing the sum of a list of numbers,
-	     * which will filter other data types.
+	     * which will filter other source_data types.
 	     * @param  {Array.<number>} data
 	     * @return {number}
 	     */
@@ -1163,7 +1163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Is a method for computing the min value of a list of numbers,
-	     * which will filter other data types.
+	     * which will filter other source_data types.
 	     * @param  {Array.<number>} data
 	     * @return {number}
 	     */
@@ -1225,7 +1225,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        
 	        // return the xAxis coordinate for each bins, except the end point of the value
 	        var rangeArray = range(
-	                // use function toFixed() to avoid data like '0.700000001'
+	                // use function toFixed() to avoid source_data like '0.700000001'
 	                +((Math.ceil(minValue / step) * step).toFixed(precision)),
 	                +((Math.floor(maxValue / step) * step).toFixed(precision)),
 	                step,
@@ -1258,7 +1258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        var data = map(bins, function (bin) {
-	            // use function toFixed() to avoid data like '6.5666638489'
+	            // use function toFixed() to avoid source_data like '6.5666638489'
 	            return [+((bin.x0 + bin.x1) / 2).toFixed(precision), bin.sample.length];
 	        });
 

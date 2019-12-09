@@ -143,9 +143,9 @@ function foo() {
                 }
             },
 
-            //data: mapList  //数据
+            //source_data: mapList  //数据
             data: m,  //数据
-            //data: mapList  //数据
+            //source_data: mapList  //数据
             //clickable:false
 
         }]
@@ -249,7 +249,7 @@ function foo() {
                     type: 'map',
                     coordinateSystem: 'geo',
                     //clickable:false // 取消点击事件
-                    //data: m1,
+                    //source_data: m1,
 
                 }]
             });
@@ -274,10 +274,10 @@ function foo() {
             //     // 折线图
             //     $.ajax({
             //         url: "{{ url_for('t.data_show') }}",
-            //         data: {city_name: params.name, captial_id: get_cap_id()},
+            //         source_data: {city_name: params.name, captial_id: get_cap_id()},
             //         //url: "/t/data_show/",
-            //         success: function (data) {
-            //             console.log(data)
+            //         success: function (source_data) {
+            //             console.log(source_data)
             //             var myChart2 = echarts.init(document.getElementById('main2'));
             //             var option2 = {
             //                 //backgroundColor: '#12cf96',
@@ -307,7 +307,7 @@ function foo() {
             //                         interval: 0,
             //                         rotate: 295
             //                     },
-            //                     data: data['X']
+            //                     source_data: source_data['X']
             //                 },
             //                 yAxis: {
             //                     name: '数量',
@@ -319,7 +319,7 @@ function foo() {
             //                     //}
             //                 },
             //                 series: [{
-            //                     data: data['Y'],
+            //                     source_data: source_data['Y'],
             //                     type: 'line',
             //                     lineStyle: {
             //                         width: 2 //default value:2,

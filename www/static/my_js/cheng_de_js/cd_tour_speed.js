@@ -34,7 +34,7 @@ function new_old_index(data) {
             // name:'日期',
             type: 'category',
             data: data.year
-            // data: [2016, 2017, 2018]
+            // source_data: [2016, 2017, 2018]
         },
         yAxis: {
             type: 'value',
@@ -45,20 +45,20 @@ function new_old_index(data) {
             name: '住宿',
             color:'blue',
             data: data.hotel,
-            // data: [13.60950852, 15.97275969, 11.06062234],
+            // source_data: [13.60950852, 15.97275969, 11.06062234],
             type: 'line'
         }, {
             name: '餐饮',
             color:'green',
             data: data.dining,
-            // data: [17.28954656, 26.66247702, 27.11079536],
+            // source_data: [17.28954656, 26.66247702, 27.11079536],
             type: 'line'
         },
             {
                 name: '交通',
                 color: 'red',
                 data: data.transport,
-                // data: [66.18314333, 68.76817292199202, 70.21250355],
+                // source_data: [66.18314333, 68.76817292199202, 70.21250355],
                 type: 'line'
             }
         ]
@@ -74,7 +74,7 @@ $(function () {
         function (data) {
             var data = JSON.parse(data);
             // console.log('======================================')
-            // console.log(data.data)
+            // console.log(source_data.source_data)
             // console.log('========================================')
             if (data.msg == 200) {
                 new_old_index(data.data)

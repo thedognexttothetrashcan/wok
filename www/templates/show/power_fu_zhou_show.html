@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+    电力
+{% endblock %}
+{% block CSS %}
+    <style>
+
+
+    </style>
+{% endblock %}
+
+{% block main %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='my_js/fu_zhou_js/china_new_old.css') }}">
+
+    <section class="panel">
+        <div style="background-color: #ecf0f5"><span style="margin-left: 200px"><b>新旧行业用电量占比--抚州</b></span><span
+                style="margin-left: 450px"><b>行业用电量排名--抚州</b></span></div>
+        <div id="top4" style="width: 100%;height: 300px;">
+            <div class="new_old_top1">
+                <span id="time_search">
+                    <div id="key_num_select1" style="width: 120px;height: 30px">
+                    <div class="nav-topSelect">
+                        <select class="form-control select2" tabindex="-1" aria-hidden="true" id="pow_proportion"
+                                style="height:20px">
+                            <option selected="selected">2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                        </select>
+                    </div>
+                    </div>
+                </span>
+                <div id="use_pow_proportion"
+{#                     style="width: 305px;overflow: auto;height: 270px;"></div>#}
+                     style="width: 100%;overflow: auto;height: 270px;"></div>
+            </div>
+            <!-- 先隐藏GDP -->
+            <div class="new_old_top1" style="display: none">
+                <span id="time_search">
+                <div id="key_num_select1" style="width: 120px;height: 30px">
+                    <div class="nav-topSelect">
+                        <select class="form-control select2" tabindex="-1" aria-hidden="true" id="new"
+                                style="height:20px">
+                            <option selected="selected">2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                        </select>
+                    </div>
+                </div>
+            </span>
+                <div id="test1" style="width: 277px;height: 260px;background: #01ff70;">1213</div>
+            </div>
+            <div class="new_old_top2">
+                <span id="time_search">
+                <div id="key_num_select2" style="width: 120px;height: 30px">
+                    <div class="nav-topSelect">
+                        <select class="form-control select2" tabindex="-1" aria-hidden="true" id="new_ind_year"
+                                style="height:20px">
+                            <option selected="selected">2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                        </select>
+                    </div>
+                </div>
+            </span>
+                <div id="new_ind_top10" style="width: 417px;height: 300px;">
+                    <!--上 左3 TOP排名柱状图-->
+
+                </div>
+            </div>
+            <div class="new_old_top2">
+                {#                 style="background-color: turquoise"#}
+                <span id="time_search">
+                <div id="key_num_select3" style="width: 120px;height: 30px">
+                    <div class="nav-topSelect">
+                        <select class="form-control select2" tabindex="-1" aria-hidden="true" id="old_ind_year"
+                                style="height:20px">
+                            <option selected="selected">2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                        </select>
+                    </div>
+                </div>
+            </span>
+                <div id="old_ind_top10" style="width: 417px;height: 300px;"></div>
+            </div>
+        </div>
+        <!--地图-->
+        <div id="power_index">
+{#            <div id="main" class="china_and_child_map"></div>#}
+            <div id="main1" class="china_and_child_map" style="height: 500px">
+                <img style="height: 500px;width: 483px" src="{{ url_for('static', filename='img/fu_zhou_map.png') }}" alt="">
+            </div>
+{#            <span style="width: 725px;height: 20px;background: #ecf0f5;float: left;position: relative">新旧动能行业用电量指数-全国#}
+{#            <span style="margin-right: 20px;position: relative;float: right">新旧动能行业GDP能耗指数</span>#}
+{#            </span>#}
+{#            <div id="new_pow_index" class="power_num" style=""></div>#}
+            <div id="old_pow_index" class="power_num" style=""></div>
+{#            <div class="GDP_num">3</div>#}
+            <div class="GDP_num" style="background-color: deepskyblue;display: none">4</div>
+            <div id="growth_rate">行业用电量增速</div>
+        </div>
+    </section>
+
+
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=2.0&ak=HIYpc7I1PEfjryFvHVj7vUCYZEDGpvfB"></script>
+
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+    <!-- 导入my JS 文件 -->
+    <script type="text/javascript" src="{{ url_for('static', filename='my_js/fu_zhou_js/new_old_proportion.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='my_js/fu_zhou_js/new_old_pow_top10.js') }}"></script>
+{#    <script type="text/javascript" src="{{ url_for('static', filename='my_js/fu_zhou_js/china_map.js') }}"></script>#}
+    <script type="text/javascript" src="{{ url_for('static', filename='my_js/fu_zhou_js/new_old_index.js') }}"></script>
+{#    <script type="text/javascript" src="{{ url_for('static', filename='my_js/fu_zhou_js/new_old_augment_speed.js') }}"></script>#}
+{#    <script type="text/javascript" src="{{ url_for('static', filename='my_js/fu_zhou_js/aug.js') }}"></script>#}
+    <!---->
+
+
+    <script type="text/javascript">
+
+
+
+
+
+    </script>
+
+{% endblock %}

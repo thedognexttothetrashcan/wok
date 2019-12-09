@@ -94,7 +94,7 @@
                 {#                <div class="container">#}
 
                 {#                    <div class="dropdown" style="width: 800px;">#}
-                {#                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">#}
+                {#                        <button type="button" class="btn btn-primary dropdown-toggle" source_data-toggle="dropdown">#}
                 {#                            Dropdown button#}
                 {#                        </button>#}
                 {#                       <div class="dropdown-menu" style="width: 200px" id="logo">#}
@@ -166,7 +166,7 @@
             success: function (data) {
                 $('#selIndustry').append("<option value='-1' >请选择</option>")
                 for (var i = 0; i < data.length; i++) {
-                    //console.log(data[i].name);
+                    //console.log(source_data[i].name);
                     var option = "<option value='" + data[i].value + "' >" + data[i].name + "</option>";
 
                     $('#selIndustry').append(option)
@@ -183,12 +183,12 @@
                 $('#s').append("<option value='-1' >造 型</option>");
                 for (var i = 0; i < data.length; i++) {
                     var tag = [];
-                    {#tag.push("<a>"+data[i].logo_name+"</a><br>");#}
+                    {#tag.push("<a>"+source_data[i].logo_name+"</a><br>");#}
                     var path = "img/auto_logo/lanbo.jpg";
-                    //tag.push("<a style=\"height: 40px\" href=\"javascript:void(0);\" onclick=\"logo_func();\">" + data[i].logo_name +"</a><br>");
-                    //tags.push("<a href=\"javascript:void(0);\" onclick=\"tag_search('" + kw[i] + "',false);$(this).css({'color': 'red','text-decoration': 'underline'});\">" + kw[i] + "</a>");                        //var tag = "<a href=\"javascript:void(0);\ >" + data[i].name + "</a>";
+                    //tag.push("<a style=\"height: 40px\" href=\"javascript:void(0);\" onclick=\"logo_func();\">" + source_data[i].logo_name +"</a><br>");
+                    //tags.push("<a href=\"javascript:void(0);\" onclick=\"tag_search('" + kw[i] + "',false);$(this).css({'color': 'red','text-decoration': 'underline'});\">" + kw[i] + "</a>");                        //var tag = "<a href=\"javascript:void(0);\ >" + source_data[i].name + "</a>";
                     var option = "<option value='" + data[i].logo_value + "' >" + data[i].logo_name + "</option>";
-                    //var t = "<option value='" + data[i].logo_value + "' >" + data[i].logo_name + "</option>";
+                    //var t = "<option value='" + source_data[i].logo_value + "' >" + source_data[i].logo_name + "</option>";
                     $('#s').append(option)
                 }
 
@@ -204,7 +204,7 @@
                 success: function (data) {
                     $("#selBrand").empty();
                     $('#selBrand').append("<option value='-1' >请选择</option>")
-                    //console.log(data)
+                    //console.log(source_data)
                     for (var i = 0; i < data.length; i++) {
                         var option = "<option value='" + data[i].value + "' >" + data[i].name + "</option>";
 
@@ -286,7 +286,7 @@
                             class_active = '';
                         }
 
-                        $("#tabs").append('<li  class="' + class_active + '"><a href="#tab_' + i + '" data-toggle="tab">' + data[i].label + '</a></li>');
+                        $("#tabs").append('<li  class="' + class_active + '"><a href="#tab_' + i + '" source_data-toggle="tab">' + data[i].label + '</a></li>');
                         $("#tabcontents").append('  <div class="tab-pane ' + class_active + '" id="tab_' + i + '"><div  class="box-body" style="text-align: center"><img id="imgWordCloud' + i + '" style="width:800px;height:600px;"/></div>\
                                         <div class="box-body">\
                                         <table  id="tblData' + i + '" class="table table-bordered table-hover dataTable main-tabile" role="grid" aria-describedby="example2_info" style="width:100%;">\

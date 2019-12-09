@@ -22,7 +22,7 @@ def tour_proportion():
     year = request.args.get('year')
 
     data = cheng_de_tour_index.get_cd_proportion(year)
-    # print(data)
+    # print(source_data)
     return jsonify({"msg": 200, "data": data})
 
 
@@ -30,9 +30,9 @@ def tour_proportion():
 @pow_tour.route('/tour_speed/')
 def tour_speed():
     data = cheng_de_tour_index.get_cd_tour_speed()
-    # print(data)
-    # return jsonify({"msg": 200, "data": data})
-    # return jsonify({'msg':200,'data':''})
+    # print(source_data)
+    # return jsonify({"msg": 200, "source_data": source_data})
+    # return jsonify({'msg':200,'source_data':''})
     return dumps({"msg": 200, "data": data})
 
 
@@ -40,7 +40,7 @@ def tour_speed():
 @pow_tour.route('/tour_need_speed/')
 def tour_need_speed():
     data = cheng_de_tour_index.get_cd_need_speed()
-    # print(data)
+    # print(source_data)
     return dumps({"msg": 200, "data": data})
 
 
@@ -48,8 +48,8 @@ def tour_need_speed():
 @pow_tour.route('/tour_dev_index/')
 def tour_dev_index():
     data = cheng_de_tour_index.get_cd_tour_index()
-    # print(data)
-    # return jsonify({"msg": 200, "data": data})
+    # print(source_data)
+    # return jsonify({"msg": 200, "source_data": source_data})
     return jsonify({'msg':200,'data':data})
 
 

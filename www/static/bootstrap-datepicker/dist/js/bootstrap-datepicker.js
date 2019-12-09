@@ -1041,7 +1041,7 @@
 					clsName = $.unique(clsName);
 				}
 
-				html.push('<td class="'+clsName.join(' ')+'"' + (tooltip ? ' title="'+tooltip+'"' : '') + ' data-date="' + prevMonth.getTime().toString() + '">' + content + '</td>');
+				html.push('<td class="'+clsName.join(' ')+'"' + (tooltip ? ' title="'+tooltip+'"' : '') + ' source_data-date="' + prevMonth.getTime().toString() + '">' + content + '</td>');
 				tooltip = null;
 				if (weekDay === this.o.weekEnd){
 					html.push('</tr>');
@@ -1589,7 +1589,7 @@
 	};
 
 	function opts_from_el(el, prefix){
-		// Derive options from element data-attrs
+		// Derive options from element source_data-attrs
 		var data = $(el).data(),
 			out = {}, inkey,
 			replace = new RegExp('^' + prefix.toLowerCase() + '([A-Z])');
@@ -1637,7 +1637,7 @@
 					// Preliminary otions
 					xopts = $.extend({}, defaults, elopts, options),
 					locopts = opts_from_locale(xopts.language),
-					// Options priority: js args, data-attrs, locales, defaults
+					// Options priority: js args, source_data-attrs, locales, defaults
 					opts = $.extend({}, defaults, locopts, elopts, options);
 				if ($this.hasClass('input-daterange') || opts.inputs){
 					$.extend(opts, {
@@ -2017,8 +2017,8 @@
 	* ================== */
 
 	$(document).on(
-		'focus.datepicker.data-api click.datepicker.data-api',
-		'[data-provide="datepicker"]',
+		'focus.datepicker.source_data-api click.datepicker.source_data-api',
+		'[source_data-provide="datepicker"]',
 		function(e){
 			var $this = $(this);
 			if ($this.data('datepicker'))
@@ -2029,7 +2029,7 @@
 		}
 	);
 	$(function(){
-		datepickerPlugin.call($('[data-provide="datepicker-inline"]'));
+		datepickerPlugin.call($('[source_data-provide="datepicker-inline"]'));
 	});
 
 }));

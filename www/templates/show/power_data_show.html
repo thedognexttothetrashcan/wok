@@ -163,6 +163,7 @@
         <div id="power_index">
             <div id="main" class="china_and_child_map"></div>
             <div id="main1" class="china_and_child_map" style="display: none;height: 500px"><h1>878</h1></div>
+            <div id="main2" class="china_and_child_map" style="display: none;height: 500px"><h1>878</h1></div>
 {#            <span style="width: 725px;height: 20px;background: #ecf0f5;float: left;position: relative">新旧动能行业用电量指数-全国#}
 {#            <span style="margin-right: 20px;position: relative;float: right">新旧动能行业GDP能耗指数</span>#}
 {#            </span>#}
@@ -173,6 +174,27 @@
             <div id="growth_rate">行业用电量增速</div>
         </div>
     </section>
+
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.8.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='china.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/echarts_map.js') }}"></script>
+
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+
+
+
+
+    <script type="text/javascript"
+            src="https://api.map.baidu.com/api?v=2.0&ak=Tv4xgMPzL7nohl0AymF4Y7mOrtt5Ru4w"></script>
+
     <script type="text/javascript"
             src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript"
@@ -186,21 +208,27 @@
     <script type="text/javascript" src="{{ url_for('static', filename='my_js/new_old_pow/new_old_augment_speed.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='my_js/new_old_pow/aug.js') }}"></script>
     <!---->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.8.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/echarts_map.js') }}"></script>
 
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-    <script type="text/javascript"
-            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-    <script type="text/javascript"
-            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 
-    <script type="text/javascript"
-            src="https://api.map.baidu.com/api?v=2.0&ak=HIYpc7I1PEfjryFvHVj7vUCYZEDGpvfB"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='china.js') }}"></script>
+
+
+    {#    <script type="text/javascript" src="./js/jquery-1.8.2.min.js"></script>#}
+{#    <script type="text/javascript" src="./js/echarts_map.js"></script>#}
+
+{#    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>#}
+{#    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>#}
+{#    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>#}
+{#    <script type="text/javascript"#}
+{#            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>#}
+{#    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>#}
+{#    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>#}
+{#    <script type="text/javascript"#}
+{#            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>#}
+{#    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>#}
+
+        <script type="text/javascript" src="{{ url_for('static', filename='china.js') }}"></script>
 
     <script type="text/javascript">
 

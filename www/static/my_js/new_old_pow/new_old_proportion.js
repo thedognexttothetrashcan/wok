@@ -9,7 +9,7 @@ function new_old_ind_data(data) {
             x: 'left',
             textStyle: {
                 color: 'black',
-                fontSize: 18
+                fontSize: 16
             }
         },
         //tooltip: {
@@ -35,7 +35,7 @@ function new_old_ind_data(data) {
             textStyle: {
                 color: 'black',
                 fontWeight: 500,
-                fontSize: 16
+                fontSize: 13
             },
             data: [{name: '新行业', icon: 'rect', color: 'black'},
                 {name: '旧行业', icon: 'rect', color: 'black'},
@@ -99,7 +99,7 @@ $(function () {
     //console.log($("#pow_proportion").val()+'--------------');
     $.get('/new_old_pow/power_proportion?year=' + $("#pow_proportion").val(),
         function (data) {
-            //console.log(data.data)
+            //console.log(source_data.source_data)
             if (data.msg == 200) {
                 new_old_ind_data(data.data)
             } else {
@@ -115,8 +115,8 @@ $("#pow_proportion").change(function () {
 
     $.get('/new_old_pow/power_proportion?year=' + $("#pow_proportion").val(),
         function (data) {
-            //console.log(data.msg)
-            //console.log(data.data)
+            //console.log(source_data.msg)
+            //console.log(source_data.source_data)
             if (data.msg == 200) {
                 new_old_ind_data(data.data)
             } else {

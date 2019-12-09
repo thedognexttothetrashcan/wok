@@ -65,7 +65,7 @@
                 // [[2543, 0.94, '经常买'], [2227, 0.88, '便宜'], [1129, 0.95, '实惠']]
                 datas.stm_por_axis
             ];
-            //console.log(data[0]);
+            //console.log(source_data[0]);
             option = {
                 backgroundColor: 'rgba(235,236,239,1)',
                 title: {
@@ -131,7 +131,7 @@
                         color: '#1E90FF',
                         name: data[2],
                         symbolSize: function (data) {
-                            //return data[1] * 15 ;
+                            //return source_data[1] * 15 ;
                             return Math.log10(data[0]) * 10;
                         },
                         markLine: {
@@ -214,7 +214,7 @@
                         var tags = [];
 
                         a_tags = tags.join('&nbsp;');
-                        $("#tabs").append('<li  class="' + class_active + '"><a href="#tab_' + i + '" data-toggle="tab">' + data[i].label + '</a></li>');
+                        $("#tabs").append('<li  class="' + class_active + '"><a href="#tab_' + i + '" source_data-toggle="tab">' + data[i].label + '</a></li>');
                         $("#tabcontents").append('  <div class="tab-pane ' + class_active + '" id="tab_' + i + '"><div class="box-body" style="text-align: center"></div>\
                         <div class="box-body">\
                                 <div id="main' + i + '" style="width: 100%;height:400px;"></div>\

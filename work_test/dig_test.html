@@ -420,9 +420,9 @@
                             show: false
                         }
                     },
-                    //data: mapList  //数据
+                    //source_data: mapList  //数据
                     data: m,  //数据
-                    //data: mapList  //数据
+                    //source_data: mapList  //数据
                     //clickable:false
 
 
@@ -513,7 +513,7 @@
                                 url: "{{ url_for('t.data_show') }}",
 
                                 success: function (data) {
-                                    //alert(data)
+                                    //alert(source_data)
                                     console.log(params);
                                     $("#show_data").show()
                                     $("#show_data").html('<h3>' + params.name + '</h3>' + '</br>')
@@ -537,8 +537,8 @@
             //    $.ajax({
             //        url: "{{ url_for('t.data_show') }}",
             //
-            //        success: function (data) {
-            //            //alert(data)
+            //        success: function (source_data) {
+            //            //alert(source_data)
             //            console.log(params);
             //            $("#show_data").show()
             //            $("#show_data").html('<h3>' + params.name + '</h3>' + '</br>')
@@ -560,7 +560,7 @@
         //$.ajax({
         //  url: "{{ url_for('t.data_show') }}",
 
-        //success: function (data) {
+        //success: function (source_data) {
         //foo();
         //}
         //});
@@ -576,7 +576,7 @@ option = {
 
     xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        source_data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
     yAxis: {
         type: 'value'
@@ -590,7 +590,7 @@ option = {
 
                 },
     series: [{
-        data: [300, 200, 150, 140, 120, 110, 10],
+        source_data: [300, 200, 150, 140, 120, 110, 10],
         type: 'bar',
         itemStyle: {
                 normal: {
@@ -607,7 +607,7 @@ option = {
             show: true,
             //formatter: '{c}%',
             formatter:function(p){
-                return p.data
+                return p.source_data
             },
             position: "top",
             textStyle: {

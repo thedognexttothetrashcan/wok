@@ -164,7 +164,7 @@
                         {% else %}
                     <li>
                 {% endif %}
-                <a href="{{ url_for('new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>行业动能指数</a></li>
+                <a href="{{ url_for('new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>全国行业动能指数</a></li>
 
                 {% if menu_status['c_menu']=='tour' %}
                     <li class="active">
@@ -172,6 +172,14 @@
                     <li>
                 {% endif %}
                 <a href="{{ url_for('pow_tour.tour_index') }}"><i class="fa fa-circle-o"></i>电力旅游指数</a></li>
+
+            {% if menu_status['c_menu']=='fu_zhou' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('fu_zhou_new_old_pow.t3_index1') }}"><i class="fa fa-circle-o"></i>抚州行业动能指数</a></li>
+
             </ul>
 
         </ul>

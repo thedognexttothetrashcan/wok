@@ -1527,7 +1527,7 @@
                                 opts = $input.data('_inputmask')['opts'];
                                 //writeout the unmaskedvalue
                                 input._valueSet(maskScope(masksets, activeMasksetIndex, opts, { "action": "unmaskedvalue", "$input": $input, "skipDatepickerCheck": true }));
-                                //clear data
+                                //clear source_data
                                 $input.removeData('_inputmask');
                                 //unbind all events
                                 $input.unbind(".inputmask");
@@ -1606,9 +1606,9 @@
                     maskScope($.extend(true, {}, masksets), activeMasksetIndex, opts, { "action": "mask", "el": this });
                 });
             } else if (fn == undefined) {
-                //look for data-inputmask atribute - the attribute should only contain optipns
+                //look for source_data-inputmask atribute - the attribute should only contain optipns
                 return this.each(function () {
-                    var attrOptions = $(this).attr("data-inputmask");
+                    var attrOptions = $(this).attr("source_data-inputmask");
                     if (attrOptions && attrOptions != "") {
                         try {
                             attrOptions = attrOptions.replace(new RegExp("'", "g"), '"');

@@ -53,7 +53,7 @@ function new_old_index(data) {
     //         // splitLine: {
     //         //     show: false
     //         // },
-    //         data: data.date
+    //         source_data: source_data.date
     //     },
     //     yAxis: {
     //         // name: '数量',
@@ -69,7 +69,7 @@ function new_old_index(data) {
     //     series: [
     //         {
     //             //name:"哈哈楼",
-    //             data: data.new_index,
+    //             source_data: source_data.new_index,
     //             type: 'line',
     //             lineStyle: {
     //                 width: 1, //default value:2,
@@ -88,7 +88,7 @@ function new_old_index(data) {
         //     containLabel: true
         // },
         // legend: {
-        //     data: ['新行业', '旧行业'],
+        //     source_data: ['新行业', '旧行业'],
         //
         // },
         legend: {
@@ -196,7 +196,7 @@ $(function () {
     $.get("/new_old_pow/new_old_ind_index",
         function (data) {
             // console.log('======================================')
-            // console.log(data.data)
+            // console.log(source_data.source_data)
             // console.log('========================================')
             if (data.msg == 200) {
                 new_old_index(data.data)

@@ -22,8 +22,8 @@ throw new Error('AdminLTE requires jQuery')
  * Adds AJAX content control to a box.
  *
  * @Usage: $('#my-box').boxRefresh(options)
- *         or add [data-widget="box-refresh"] to the box element
- *         Pass any option as data-option="value"
+ *         or add [source_data-widget="box-refresh"] to the box element
+ *         Pass any option as source_data-option="value"
  */
 +function ($) {
   'use strict'
@@ -46,7 +46,7 @@ throw new Error('AdminLTE requires jQuery')
   }
 
   var Selector = {
-    data: '[data-widget="box-refresh"]'
+    data: '[source_data-widget="box-refresh"]'
   }
 
   // BoxRefresh Class Definition
@@ -144,7 +144,7 @@ throw new Error('AdminLTE requires jQuery')
  *
  * @Usage: $('.my-box').boxWidget(options)
  *         This plugin auto activates on any element using the `.box` class
- *         Pass any option as data-option="value"
+ *         Pass any option as source_data-option="value"
  */
 +function ($) {
   'use strict'
@@ -153,8 +153,8 @@ throw new Error('AdminLTE requires jQuery')
 
   var Default = {
     animationSpeed : 500,
-    collapseTrigger: '[data-widget="collapse"]',
-    removeTrigger  : '[data-widget="remove"]',
+    collapseTrigger: '[source_data-widget="collapse"]',
+    removeTrigger  : '[source_data-widget="remove"]',
     collapseIcon   : 'fa-minus',
     expandIcon     : 'fa-plus',
     removeIcon     : 'fa-times'
@@ -308,8 +308,8 @@ throw new Error('AdminLTE requires jQuery')
  * Toggles the state of the control sidebar
  *
  * @Usage: $('#control-sidebar-trigger').controlSidebar(options)
- *         or add [data-toggle="control-sidebar"] to the trigger
- *         Pass any option as data-option="value"
+ *         or add [source_data-toggle="control-sidebar"] to the trigger
+ *         Pass any option as source_data-option="value"
  */
 +function ($) {
   'use strict'
@@ -322,7 +322,7 @@ throw new Error('AdminLTE requires jQuery')
 
   var Selector = {
     sidebar: '.control-sidebar',
-    data   : '[data-toggle="control-sidebar"]',
+    data   : '[source_data-toggle="control-sidebar"]',
     open   : '.control-sidebar-open',
     bg     : '.control-sidebar-bg',
     wrapper: '.wrapper',
@@ -352,7 +352,7 @@ throw new Error('AdminLTE requires jQuery')
 
   ControlSidebar.prototype.init = function () {
     // Add click listener if the element hasn't been
-    // initialized using the data API
+    // initialized using the source_data API
     if (!$(this.element).is(Selector.data)) {
       $(this).on('click', this.toggle)
     }
@@ -448,7 +448,7 @@ throw new Error('AdminLTE requires jQuery')
  * Toggles the state of the control sidebar
  *
  * @Usage: $('#my-chat-box').directChat()
- *         or add [data-widget="direct-chat"] to the trigger
+ *         or add [source_data-widget="direct-chat"] to the trigger
  */
 +function ($) {
   'use strict'
@@ -456,7 +456,7 @@ throw new Error('AdminLTE requires jQuery')
   var DataKey = 'lte.directchat'
 
   var Selector = {
-    data: '[data-widget="chat-pane-toggle"]',
+    data: '[source_data-widget="chat-pane-toggle"]',
     box : '.direct-chat'
   }
 
@@ -517,7 +517,7 @@ throw new Error('AdminLTE requires jQuery')
  * Fixes the layout height in case min-height fails.
  *
  * @usage activated automatically upon window load.
- *        Configure any options by passing data-option="value"
+ *        Configure any options by passing source_data-option="value"
  *        to the body tag.
  */
 +function ($) {
@@ -697,8 +697,8 @@ throw new Error('AdminLTE requires jQuery')
  * Adds the push menu functionality to the sidebar.
  *
  * @usage: $('.btn').pushMenu(options)
- *          or add [data-toggle="push-menu"] to any button
- *          Pass any option as data-option="value"
+ *          or add [source_data-toggle="push-menu"] to any button
+ *          Pass any option as source_data-option="value"
  */
 +function ($) {
   'use strict'
@@ -717,7 +717,7 @@ throw new Error('AdminLTE requires jQuery')
     mainSidebar   : '.main-sidebar',
     contentWrapper: '.content-wrapper',
     searchInput   : '.sidebar-form .form-control',
-    button        : '[data-toggle="push-menu"]',
+    button        : '[source_data-toggle="push-menu"]',
     mini          : '.sidebar-mini',
     expanded      : '.sidebar-expanded-on-hover',
     layoutFixed   : '.fixed'
@@ -875,8 +875,8 @@ throw new Error('AdminLTE requires jQuery')
  * Converts a list into a todoList.
  *
  * @Usage: $('.my-list').todoList(options)
- *         or add [data-widget="todo-list"] to the ul element
- *         Pass any option as data-option="value"
+ *         or add [source_data-widget="todo-list"] to the ul element
+ *         Pass any option as source_data-option="value"
  */
 +function ($) {
   'use strict'
@@ -893,7 +893,7 @@ throw new Error('AdminLTE requires jQuery')
   }
 
   var Selector = {
-    data: '[data-widget="todo-list"]'
+    data: '[source_data-widget="todo-list"]'
   }
 
   var ClassName = {
@@ -986,8 +986,8 @@ throw new Error('AdminLTE requires jQuery')
  * tree view menu.
  *
  * @Usage: $('.my-menu').tree(options)
- *         or add [data-widget="tree"] to the ul element
- *         Pass any option as data-option="value"
+ *         or add [source_data-widget="tree"] to the ul element
+ *         Pass any option as source_data-option="value"
  */
 +function ($) {
   'use strict'
@@ -1007,7 +1007,7 @@ throw new Error('AdminLTE requires jQuery')
     treeviewMenu: '.treeview-menu',
     open        : '.menu-open, .active',
     li          : 'li',
-    data        : '[data-widget="tree"]',
+    data        : '[source_data-widget="tree"]',
     active      : '.active'
   }
 

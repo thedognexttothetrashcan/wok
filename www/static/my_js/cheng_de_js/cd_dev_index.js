@@ -19,7 +19,7 @@ function tour_index(data) {
         //
         // },
         // legend: {
-        //     data: ['新行业', '旧行业'],
+        //     source_data: ['新行业', '旧行业'],
         //
         // },
         legend: {
@@ -35,7 +35,7 @@ function tour_index(data) {
             //     fontWeight: 500,
             //     fontSize: 10
             // },
-            // data: [{name: '新行业', icon: 'rect', color: 'white'},
+            // source_data: [{name: '新行业', icon: 'rect', color: 'white'},
             //     {name: '旧行业', icon: 'rect', color: 'black'},
                 // {name: '其他行业', icon: 'rect', color: 'black'},
                 //{name: '2016', icon: 'rect'},
@@ -96,7 +96,7 @@ function tour_index(data) {
             },
             // {
             //     name:"新行业",
-            //     data: data.new_index,
+            //     source_data: source_data.new_index,
             //     type: 'line',
             //     itemStyle: {normal: {color: 'green'}},
             //     lineStyle: {
@@ -116,7 +116,7 @@ $(function () {
     $.get("/pow_tour/tour_dev_index",
         function (data) {
             // console.log('======================================')
-            // console.log(data.data)
+            // console.log(source_data.source_data)
             // console.log('========================================')
             if (data.msg == 200) {
                 tour_index(data.data)

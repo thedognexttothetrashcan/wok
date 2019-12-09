@@ -1852,7 +1852,7 @@
             }
 
             if (data) {
-                // moment.duration._locale = moment._locale = data;
+                // moment.duration._locale = moment._locale = source_data;
                 globalLocale = data;
             }
             else {
@@ -1946,7 +1946,7 @@
         return locales[name];
     }
 
-    // returns locale data
+    // returns locale source_data
     function getLocale (key) {
         var locale;
 
@@ -11601,7 +11601,7 @@
 
     // http://new.gramota.ru/spravka/rules/139-prop : § 103
     // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
-    // CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
+    // CLDR source_data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
     hooks.defineLocale('ru', {
         months : {
             format: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split('_'),

@@ -99,7 +99,7 @@ $(function () {
     // console.log($("#pow_proportion").val()+'--------------');
     $.get('/pow_tour/tour_proportion?year=' + $("#pow_proportion").val(),
         function (data) {
-            //console.log(data.data)
+            //console.log(source_data.source_data)
             if (data.msg == 200) {
                 new_old_ind_data(data.data)
             } else {
@@ -115,8 +115,8 @@ $("#pow_proportion").change(function () {
 
     $.get('/pow_tour/tour_proportion?year=' + $("#pow_proportion").val(),
         function (data) {
-            //console.log(data.msg)
-            //console.log(data.data)
+            //console.log(source_data.msg)
+            //console.log(source_data.source_data)
             if (data.msg == 200) {
                 new_old_ind_data(data.data)
             } else {

@@ -1,0 +1,609 @@
+{% extends "base.html" %}
+{% block title %}
+    Data Show
+{% endblock title %}
+
+{% block CSS %}
+    <style>
+        #container {
+            width: 100%;
+            height: 600px;
+            background: bisque;
+        }
+    </style>
+{% endblock CSS %}
+
+
+{% block main %}
+    {#       <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>#}
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.8.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='china.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/echarts_map.js') }}"></script>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+    <section class="content-header">
+        <h1 id="title">
+            Data Show123
+            <!-- <small>Preview sample</small> -->
+        </h1>
+
+        <ol class="breadcrumb" style="display: none">
+            <li><a href="#"><i class="fa fa-dashboard"></i>show</a></li>
+            <li class="active">show</li>
+        </ol>
+    </section>
+    <section class="content">
+        {#        {% include "show/search.html" %}#}
+        {#        <div class="row mg_tp20">#}
+        {#            <div class="col-xs-12">#}
+        {#                <!-- interactive chart -->#}
+        {#                <div class="box box-primary">#}
+        {##}
+        {##}
+        {#                    <div class="nav-tabs-custom">#}
+        {#                        <ul class="nav nav-tabs" id='tabs'>#}
+        {##}
+        {#                        </ul>#}
+        {#                        <div class="tab-content" id='tabcontents'>#}
+        {##}
+        {#                        </div>#}
+        {##}
+        {#                    </div>#}
+        {#                    <!-- /.box -->#}
+        {##}
+        {#                </div>#}
+        {#                <!-- /.col -->#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <!--Echarts-->#}
+        {#        <div>#}
+        {#      地图      #}
+        {#            <div id="main" style="width: 100%;height:590px;float: left;"></div>#}
+        {#            <div id="main1" style="width: 450px;height:600px;float: left;display: none"></div>#}
+        {#            <div id="line">#}
+        {#                <h4 id="line_h3" style="display: none">#}
+        {#                    <span id="p1"></span>#}
+        {#                    &nbsp;&nbsp;&nbsp;&nbsp;#}
+        {#                    <span id="p2"></span>#}
+        {#                    &nbsp;&nbsp;&nbsp;&nbsp;#}
+        {#                    <span id="p3"></span>#}
+        {#                    &nbsp;&nbsp;&nbsp;&nbsp;#}
+        {#                    <span id="p4"></span>#}
+        {#                    <button id="but" type="button" class="btn btn-primary">刷新</button>#}
+        {##}
+        {##}
+        {#                </h4>#}
+        {#                <div id="main2" style="display: none">#}
+        {#                </div>#}
+        {#                <div id="main_hist"></div>#}
+        {#            </div>#}
+        {##}
+        {#        </div>#}
+
+
+        {#        <div id="container" style="height: 700px;padding:0;width:100%"></div> <!--地图-->#}
+
+        <!--弹出框-->
+        <div id="box">
+            <p id="box-title" style="padding: 1rem;"></p>
+        </div>
+        <div id="container"></div>
+
+    </section>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/echarts.min.js') }}"></script>
+
+    {#  以下必须导入  #}
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.8.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/echarts_map.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='china.js') }}"></script>
+
+
+
+    <script type="text/javascript">
+        // 获取url参数
+        (function ($) {
+            $.getUrlParam = function (name, aTarget) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = aTarget.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+        })(jQuery);
+
+        // base64编码
+        function Base64() {
+            // private property
+            _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+            // public method for encoding
+            this.encode = function (input) {
+                var output = "";
+                var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+                var i = 0;
+                input = _utf8_encode(input);
+                while (i < input.length) {
+                    chr1 = input.charCodeAt(i++);
+                    chr2 = input.charCodeAt(i++);
+                    chr3 = input.charCodeAt(i++);
+                    enc1 = chr1 >> 2;
+                    enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                    enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                    enc4 = chr3 & 63;
+                    if (isNaN(chr2)) {
+                        enc3 = enc4 = 64;
+                    } else if (isNaN(chr3)) {
+                        enc4 = 64;
+                    }
+                    output = output +
+                        _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+                        _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+                }
+                return output;
+            }
+
+            // public method for decoding
+            this.decode = function (input) {
+                var output = "";
+                var chr1, chr2, chr3;
+                var enc1, enc2, enc3, enc4;
+                var i = 0;
+                input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+                while (i < input.length) {
+                    enc1 = _keyStr.indexOf(input.charAt(i++));
+                    enc2 = _keyStr.indexOf(input.charAt(i++));
+                    enc3 = _keyStr.indexOf(input.charAt(i++));
+                    enc4 = _keyStr.indexOf(input.charAt(i++));
+                    chr1 = (enc1 << 2) | (enc2 >> 4);
+                    chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                    chr3 = ((enc3 & 3) << 6) | enc4;
+                    output = output + String.fromCharCode(chr1);
+                    if (enc3 != 64) {
+                        output = output + String.fromCharCode(chr2);
+                    }
+                    if (enc4 != 64) {
+                        output = output + String.fromCharCode(chr3);
+                    }
+                }
+                output = _utf8_decode(output);
+                return output;
+            }
+
+            // private method for UTF-8 encoding
+            _utf8_encode = function (string) {
+                string = string.replace(/\r\n/g, "\n");
+                var utftext = "";
+                for (var n = 0; n < string.length; n++) {
+                    var c = string.charCodeAt(n);
+                    if (c < 128) {
+                        utftext += String.fromCharCode(c);
+                    } else if ((c > 127) && (c < 2048)) {
+                        utftext += String.fromCharCode((c >> 6) | 192);
+                        utftext += String.fromCharCode((c & 63) | 128);
+                    } else {
+                        utftext += String.fromCharCode((c >> 12) | 224);
+                        utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                        utftext += String.fromCharCode((c & 63) | 128);
+                    }
+
+                }
+                return utftext;
+            }
+
+            // private method for UTF-8 decoding
+            _utf8_decode = function (utftext) {
+                var string = "";
+                var i = 0;
+                var c = c1 = c2 = 0;
+                while (i < utftext.length) {
+                    c = utftext.charCodeAt(i);
+                    if (c < 128) {
+                        string += String.fromCharCode(c);
+                        i++;
+                    } else if ((c > 191) && (c < 224)) {
+                        c2 = utftext.charCodeAt(i + 1);
+                        string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                        i += 2;
+                    } else {
+                        c2 = utftext.charCodeAt(i + 1);
+                        c3 = utftext.charCodeAt(i + 2);
+                        string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                        i += 3;
+                    }
+                }
+                return string;
+            }
+        }
+
+        var mapList = [
+            {
+                "id": "11",
+                "name": "北京市"
+            },
+            {
+                "id": "12",
+                "name": "天津市"
+            },
+            {
+                "id": "13",
+                "name": "河北省"
+            },
+            {
+                "id": "14",
+                "name": "山西省"
+            },
+            {
+                "id": "15",
+                "name": "内蒙古自治区"
+            },
+            {
+                "id": "21",
+                "name": "辽宁省"
+            },
+            {
+                "id": "22",
+                "name": "吉林省"
+            },
+            {
+                "id": "23",
+                "name": "黑龙江省"
+            },
+            {
+                "id": "31",
+                "name": "上海市"
+            },
+            {
+                "id": "32",
+                "name": "江苏省"
+            },
+            {
+                "id": "33",
+                "name": "浙江省"
+            },
+            {
+                "id": "34",
+                "name": "安徽省"
+            },
+            {
+                "id": "35",
+                "name": "福建省"
+
+            },
+            {
+                "id": "36",
+                "name": "江西省"
+            },
+            {
+                "id": "37",
+                "name": "山东省"
+            },
+            {
+                "id": "41",
+                "name": "河南省"
+            },
+            {
+                "id": "42",
+                "name": "湖北省"
+            },
+            {
+                "id": "43",
+                "name": "湖南省"
+            },
+            {
+                "id": "44",
+                "name": "广东省"
+            },
+            {
+                "id": "45",
+                "name": "广西壮族自治区"
+            },
+            {
+                "id": "46",
+                "name": "海南省"
+            },
+            {
+                "id": "50",
+                "name": "重庆市"
+            },
+            {
+                "id": "51",
+                "name": "四川省"
+            },
+            {
+                "id": "52",
+                "name": "贵州省"
+            },
+            {
+                "id": "53",
+                "name": "云南省"
+            },
+            {
+                "id": "54",
+                "name": "西藏自治区"
+            },
+            {
+                "id": "61",
+                "name": "陕西省"
+            },
+            {
+                "id": "62",
+                "name": "甘肃省"
+            },
+            {
+                "id": "63",
+                "name": "青海省"
+            },
+            {
+                "id": "64",
+                "name": "宁夏回族自治区"
+            },
+            {
+                "id": "65",
+                "name": "新疆维吾尔自治区"
+            },
+            {
+                "id": "71",
+                "name": "台湾省"
+            },
+            {
+                "id": "81",
+                "name": "香港特别行政区"
+            },
+            {
+                "id": "82",
+                "name": "澳门特别行政区"
+            }
+        ];
+
+        function getProId(name) {
+            for (let i in mapList) {
+                if (mapList[i].name == name) {
+                    return mapList[i].id;
+                }
+            }
+        }
+
+        function getCityId(geoJson, name) {
+            for (let i in geoJson.features) {
+                if (geoJson.features[i].properties.name == name) {
+                    return geoJson.features[i].properties.id + "00";
+                }
+            }
+        }
+
+        function randomData() {
+            return Math.round(Math.random() * 500);
+        }
+
+        var mydata1 = [
+            {name: '北京', value: '100'}, {name: '天津', value: randomData()},
+            {name: '上海', value: randomData()}, {name: '重庆', value: randomData()},
+            {name: '河北', value: randomData()}, {name: '河南', value: randomData()},
+            {name: '云南', value: randomData()}, {name: '辽宁', value: randomData()},
+            {name: '黑龙江', value: randomData()}, {name: '湖南', value: randomData()},
+            {name: '安徽', value: randomData()}, {name: '山东', value: randomData()},
+            {name: '新疆', value: randomData()}, {name: '江苏', value: randomData()},
+            {name: '浙江', value: randomData()}, {name: '江西', value: randomData()},
+            {name: '湖北', value: randomData()}, {name: '广西', value: randomData()},
+            {name: '甘肃', value: randomData()}, {name: '山西', value: randomData()},
+            {name: '内蒙古', value: randomData()}, {name: '陕西', value: randomData()},
+            {name: '吉林', value: randomData()}, {name: '福建', value: randomData()},
+            {name: '贵州', value: randomData()}, {name: '广东', value: randomData()},
+            {name: '青海', value: randomData()}, {name: '西藏', value: randomData()},
+            {name: '四川', value: randomData()}, {name: '宁夏', value: randomData()},
+            {name: '海南', value: randomData()}, {name: '台湾', value: randomData()},
+            {name: '香港', value: randomData()}, {name: '澳门', value: randomData()}
+        ];
+
+
+        var myChart = echarts.init(document.getElementById("container"));
+        var param = $.getUrlParam('param', self);
+        if (param) {
+            param = new Base64().decode(param);
+            var catalog = $.getUrlParam('catalog', self);
+            myChart.showLoading();
+            if (catalog == 'province') {
+
+                $.getJSON("{{ url_for('static', filename='json/geometryProvince/') }}" + getProId(param) + '.js', function (geoJson) {
+                    {#$.getJSON('json/geometryProvince/' + getProId(param) + '.js', function (geoJson) {#}
+                    myChart.hideLoading();
+                    echarts.registerMap(getProId(param), geoJson);
+                    myChart.setOption(option = {
+                        visualMap: {
+                            min: 0,
+                            max: 10,
+                            text: ['High', 'Low'],
+                            seriesIndex: [1],                   //必须设置此项,否则会覆盖标注点颜色
+                            realtime: true,
+                            calculable: true,
+                            inRange: {
+                                color: ['lightskyblue', 'yellow', 'orangered']
+                            },
+                            textStyle: {
+                                color: 'lime'
+                            }
+                        },
+                        geo: {
+                            map: getProId(param),
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: '#3ebee6'                        //省份字体颜色
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderColor: 'rgba(0, 0, 0, 0.2)'
+                                },
+                                emphasis: {
+                                    areaColor: null,
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        series: [
+                            {
+                                title: 'asdasda',
+                                name: 'asdasdsad',
+                                roam: true,
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                            }
+                        ]
+                    });
+                    myChart.on('click', function (params) {
+                        console.log("-------------------------")
+                        console.log(params)
+                        console.log("-------------------------")
+                        alert('没有啦！！！！')
+
+                        {#window.location.href = `{{ url_for('t1.t1_index') }}?param=${new Base64().encode(params.name)}&catalog=city&code=${getCityId(geoJson, params.name)}`;#}
+                        {#window.location.href = `index2.html?param=${new Base64().encode(params.name)}&catalog=city&code=${getCityId(geoJson, params.name)}`;#}
+                    });
+                });
+            }
+            else if (catalog == 'city') {
+                myChart.showLoading();
+                var code = $.getUrlParam('code', self);
+                $.getJSON("{{ url_for('static', filename='json/geometryCouties/') }}" + code + '.js', function (geoJson) {
+                    {#$.getJSON('json/geometryCouties/' + code + '.js', function (geoJson) {#}
+                    myChart.hideLoading();
+                    echarts.registerMap(code, geoJson);
+                    myChart.setOption(option = {
+                        visualMap: {
+                            min: 0,
+                            max: 10,
+                            text: ['High', 'Low'],
+                            seriesIndex: [1],                   //必须设置此项,否则会覆盖标注点颜色
+                            realtime: true,
+                            calculable: true,
+                            inRange: {
+                                color: ['lightskyblue', 'yellow', 'orangered']
+                            },
+                            textStyle: {
+                                color: 'lime'
+                            }
+                        },
+                        geo: {
+                            map: code,
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: '#3ebee6'
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderColor: 'rgba(0, 0, 0, 0.2)'
+                                },
+                                emphasis: {
+                                    areaColor: null,
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        series: [
+                            {
+                                roam: true,
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+
+
+                            }
+                        ]
+                    });
+                });
+                myChart.on('click', function (params) {
+                    alert('your code');
+                });
+            }
+        }
+        else {
+            myChart.showLoading();
+            myChart.hideLoading();
+            echarts.registerMap('china', chinaJson);
+            myChart.setOption(option = {
+                visualMap: {
+                    min: 0,
+                    max: 10,
+                    text: ['High', 'Low'],
+                    seriesIndex: [1],                   //必须设置此项,否则会覆盖标注点颜色
+                    realtime: true,
+                    calculable: true,
+                    inRange: {
+                        color: ['lightskyblue', 'yellow', 'orangered']
+                    },
+                    textStyle: {
+                        color: 'lime'
+                    }
+                },
+                geo: {
+                    map: 'china',
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                color: '#3ebee6'                        //省份字体颜色
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: 'rgba(0, 0, 0, 0.2)'
+                        },
+                        emphasis: {
+                            areaColor: null,
+                            shadowOffsetX: 0,
+                            shadowOffsetY: 0,
+                            shadowBlur: 20,
+                            borderWidth: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                },
+                series: [
+                    {
+                        roam: true,
+                        type: 'scatter',
+                        coordinateSystem: 'geo',
+
+                    }
+                ]
+            });
+            myChart.on('click', function (params) {
+                console.log("==============================")
+                window.location.href = `{{ url_for('t1.t1_index') }}?param=${new Base64().encode(params.name)}&catalog=province`;
+                {#window.location.href = `http://127.0.0.1:9000/t1/?param=${new Base64().encode(params.name)}&catalog=province`;#}
+                {#window.location.href = `index2.html?param=${new Base64().encode(params.name)}&catalog=province`;#}
+            });
+        }
+    </script>
+
+
+
+{% endblock main %}
+
+

@@ -9,7 +9,7 @@ function new_power_top10(data) {
             left: 'left',
             itemGap: 2,
             textStyle: {
-                color: 'black',
+                color: 'green',
                 fontSize: 15
             }
         },
@@ -21,7 +21,7 @@ function new_power_top10(data) {
         //}
         //},
         //legend: {
-        //    data: ['2018年']
+        //    source_data: ['2018年']
         //},
         // grid: {
         //     left: '3%',
@@ -32,9 +32,9 @@ function new_power_top10(data) {
         grid: {
             top: '12%',//距上边距
 
-            left: '36%',//距离左边距
+            left: '40%',//距离左边距
 
-            right: '10%',//距离右边距
+            right: '5%',//距离右边距
 
             bottom: '20%',//距离下边距
             //containLabel: true,
@@ -73,14 +73,14 @@ function new_power_top10(data) {
 
             type: 'category',
 
-            // New data
+            // New source_data
             data: data.industry_name_y,
 
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: "black",
-                    fontSize: 10,
+                    color: "green",
+                    fontSize: 11    ,
                     fontWeight: 900,
                 }
             },
@@ -91,17 +91,18 @@ function new_power_top10(data) {
                 inverse: false,
                 name: '2018年',
                 type: 'bar',
-                itemStyle: {
-                    normal: {
-                        color: function (params) {
-                            // 给出颜色组
-                            var colorList = ['#4c8c41'];
-                            //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
-                            return colorList[params.dataIndex]
-                        },
-                    },
-
-                },
+                color:'green',
+                // itemStyle: {
+                //     normal: {
+                //         color: function (params) {
+                //             // 给出颜色组
+                //             var colorList = ['green'];
+                //             //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
+                //             return colorList[params.dataIndex]
+                //         },
+                //     },
+                //
+                // },
                 label: {
                     normal: {
                         //show: true,// 显示百分比
@@ -122,7 +123,7 @@ function new_power_top10(data) {
                     }
                 },
 
-                // New data
+                // New source_data
                 data: data.industry_num
 
             },
@@ -133,10 +134,10 @@ function new_power_top10(data) {
 }
 
 $(function () {
-    //console.log($("#new_ind_year").val()+'----000000-----');
+    // console.log($("#new_ind_year").val()+'----000000-----');
     $.get("/new_old_pow/new_pow_top10?year=" + $("#new_ind_year").val()+ '&'+'tag=new',
         function (data) {
-            //console.log(data.data)
+            // console.log(source_data.source_data)
             if (data.msg == 200) {
                 new_power_top10(data.data)
             } else {
@@ -151,8 +152,8 @@ $("#new_ind_year").change(function () {
     //console.log($("#pow_proportion").val()+"--------")
     $.get('/new_old_pow/new_pow_top10?year=' + $("#new_ind_year").val() + '&'+'tag=new',
         function (data) {
-            //console.log(data.msg)
-            //console.log(data.data)
+            //console.log(source_data.msg)
+            //console.log(source_data.source_data)
             if (data.msg == 200) {
                 new_power_top10(data.data)
             } else {
@@ -174,7 +175,7 @@ function old_power_top10(data) {
             left: 'left',
             itemGap: 2,
             textStyle: {
-                color: 'black',
+                color: 'red',
                 fontSize: 15
             }
         },
@@ -186,7 +187,7 @@ function old_power_top10(data) {
         //}
         //},
         //legend: {
-        //    data: ['2018年']
+        //    source_data: ['2018年']
         //},
         // grid: {
         //     left: '3%',
@@ -240,9 +241,9 @@ function old_power_top10(data) {
 
             type: 'category',
 
-            // Old data
+            // Old source_data
             data: data.industry_name_y,
-            // data: [' 水的生产和供应业',
+            // source_data: [' 水的生产和供应业',
             //     '农、林、牧、渔服务业',
             //     ' 煤炭开采和洗选业',
             //     ' 石油加工、炼焦及核燃料加工业',
@@ -256,8 +257,8 @@ function old_power_top10(data) {
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: "black",
-                    fontSize: 10,
+                    color: "red",
+                    fontSize: 11,
                     fontWeight: 900,
                 }
             },
@@ -266,19 +267,20 @@ function old_power_top10(data) {
         series: [
             {
                 inverse: false,
-                name: '2018年',
+                // name: '2018年',
+                color:'red',
                 type: 'bar',
-                itemStyle: {
-                    normal: {
-                        color: function (params) {
-                            // 给出颜色组
-                            var colorList = ['red'];
-                            //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
-                            return colorList[params.dataIndex]
-                        },
-                    },
-
-                },
+                // itemStyle: {
+                //     normal: {
+                //         color: function (params) {
+                //             // 给出颜色组
+                //             var colorList = ['#1A1A1A'];
+                //             //var colorList = ['#cca272', '#cda266', '#d7a02b', '#c8ba23',];
+                //             return colorList[params.dataIndex]
+                //         },
+                //     },
+                //
+                // },
                 label: {
                     normal: {
                         //show: true,// 显示百分比
@@ -300,7 +302,7 @@ function old_power_top10(data) {
                 },
 
                 //---------------------
-                // Old data
+                // Old source_data
                 data:data.industry_num
 
             },
@@ -314,9 +316,9 @@ $(function () {
     //console.log($("#old_ind_year").val()+'----000000-----');
     $.get("/new_old_pow/new_pow_top10?year=" + $("#old_ind_year").val()+ '&'+'tag=old',
         function (data) {
-            // console.log(data.data)
+            // console.log(source_data.source_data)
             if (data.msg == 200) {
-                console.log(data.data)
+                // console.log(source_data.source_data)
                 old_power_top10(data.data)
             } else {
                 alert("信息不存在")
@@ -330,10 +332,10 @@ $("#old_ind_year").change(function () {
     //console.log($("#pow_proportion").val()+"--------")
     $.get('/new_old_pow/new_pow_top10?year=' + $("#old_ind_year").val()+ '&'+'tag=old',
         function (data) {
-            //console.log(data.msg)
-            // console.log(data.data)
+            //console.log(source_data.msg)
+            // console.log(source_data.source_data)
             if (data.msg == 200) {
-                console.log(data.data)
+                // console.log(source_data.source_data)
                 old_power_top10(data.data)
             } else {
                 alert("信息不存在")

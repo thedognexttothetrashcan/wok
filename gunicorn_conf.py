@@ -20,7 +20,7 @@ timeout = 30
 graceful_timeout = 10
 forwarded_allow_ips = '*'
 
-# # # 日志处理
-# # capture_output = True
-# # loglevel = 'info'
-# # errorlog = 'error.log'
+# # 日志处理
+# capture_output = True
+# loglevel = 'info'
+# errorlog = 'error.log'

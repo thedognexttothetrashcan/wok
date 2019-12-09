@@ -28,7 +28,7 @@ def get_cd_proportion(year):
         'all': res.sum(),
         'year': year
     }
-    # print(data)
+    # print(source_data)
     return data
 
 
