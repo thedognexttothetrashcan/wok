@@ -159,6 +159,18 @@
                 {% endif %}
                 <a href="{{ url_for('t1.t1_index') }}"><i class="fa fa-circle-o"></i>demo1</a></li>
 
+
+                {% if menu_status['c_menu']=='pow_index' %}
+                    <li class="active">
+                        {% else %}
+                    <li>
+                {% endif %}
+                <a href="{{ url_for('pow_index.power_index') }}"><i class="fa fa-circle-o"></i>全国电力经济指数</a></li>
+
+
+
+
+
                 {% if menu_status['c_menu']=='14-18' %}
                     <li class="active">
                         {% else %}

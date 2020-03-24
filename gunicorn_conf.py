@@ -7,7 +7,7 @@
 
 from multiprocessing import cpu_count
 
-bind = ["127.0.0.1:9000"]
+bind = ["127.0.0.1:9001"]
 daemon = False  # 是否开启守护进程模式
 pidfile = 'gunicorn.pid'
 

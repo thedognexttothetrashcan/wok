@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# ### 去除0值
+# 去除0值
 
 # 去除0值
 def drop_zero_rows(df):
@@ -9,9 +9,7 @@ def drop_zero_rows(df):
     return df
 
 
-# ### 类型转换
-
-
+# 类型转换
 def series_code_convert(value):
     """
     转换行业编码为float
